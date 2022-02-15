@@ -7,23 +7,22 @@ using System.Threading.Tasks;
 
 namespace MySCADA.Drawing
 {
-    public class ScCircle : ScShape
+    public class ScRectangle : ScShape
     {
-        public ScCircle(Point loc) : base(loc)
+        public ScRectangle(Point loc) : base(loc)
         {
         }
 
         public override string ShapeName()
         {
-            return "Circle";
+            return "Rectangle";
         }
-
         public override void Draw(Graphics g)
         {
-            using (var b = new SolidBrush(BackColor))
+            using (var b = new SolidBrush(this.BackColor))
             {
-                g.FillEllipse(b, Bounds);
-                g.DrawEllipse(Pens.Black, this.Bounds);
+                g.FillRectangle(b, Bounds);
+                g.DrawRectangle(Pens.Black, Bounds);
             }
         }
     }

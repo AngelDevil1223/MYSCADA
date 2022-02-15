@@ -7,23 +7,19 @@ using System.Threading.Tasks;
 
 namespace MySCADA.Drawing
 {
-    public class ScCircle : ScShape
+    public class ScArc : ScShape
     {
-        public ScCircle(Point loc) : base(loc)
-        {
-        }
+        public ScArc(Point loc) : base(loc) { }
 
         public override string ShapeName()
         {
-            return "Circle";
+            return "Arc";
         }
-
         public override void Draw(Graphics g)
         {
-            using (var b = new SolidBrush(BackColor))
+            using(var brush=new SolidBrush(BackColor))
             {
-                g.FillEllipse(b, Bounds);
-                g.DrawEllipse(Pens.Black, this.Bounds);
+                g.DrawArc(new Pen(BackColor), Bounds,0F, -180F);
             }
         }
     }
