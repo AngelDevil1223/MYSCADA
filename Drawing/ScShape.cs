@@ -88,17 +88,13 @@ namespace MySCADA.Drawing
         [Browsable(false)]
         public Rectangle Bounds
         {
-
             get { return bounds; }
-
             set
             {
 
                 bounds = value;
                 this.GrabHandles.SetBounds(value);
-
             }
-
         }
 
         [XmlIgnore]

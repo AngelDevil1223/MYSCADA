@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace MySCADA.Drawing
 {
-    public class ScCircle : ScShape
+    public class ScLine : ScShape
     {
-        public ScCircle(Point loc) : base(loc)
-        {
-        }
+        public ScLine(Point loc) : base(loc) { }
 
         public override string ShapeName()
         {
-            return "Circle";
+            return "Line";
         }
-
         public override void Draw(Graphics g)
         {
-            using (var b = new SolidBrush(BackColor))
+            using (var brush = new SolidBrush(BackColor))
             {
-                g.FillEllipse(b, Bounds);
-                g.DrawEllipse(Pens.Black, this.Bounds);
+                //Pen pen = new Pen(BackColor);
+                //g.FillPath(brush,Bounds)
+
+                //// Draws the line
+                //g.DrawLine(pen, pt1, pt2);
             }
         }
     }
