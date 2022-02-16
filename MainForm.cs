@@ -48,6 +48,7 @@ namespace MySCADA
             var projectContent = ScadaProject.ToFileFormat(proj);
             File.WriteAllText(fileName, projectContent);
             ScadaProject.ActiveProject = proj;
+            proj.FormAdded += Proj_FormAdded;
             Text = $"{proj.Name} [{proj.Location}]";
             treeView1.Nodes.Add(proj.ToNode());
         }
@@ -59,18 +60,23 @@ namespace MySCADA
             openFileDialog.Filter = "SCADA projects (*.scdproj)|*.scdproj|All Files (*.*)|*.*";
             if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                //var fl = File.ReadAllText(openFileDialog.FileName);
-                Stream stream = null;
-                if ((stream = openFileDialog.OpenFile()) != null)
-                {
-                    var folder = openFileDialog.FileName.Replace($"\\{openFileDialog.SafeFileName}", "");
-                    var proj = ScadaProject.FromXml(stream);
-                    proj.Location = folder;
-                    ScadaProject.ActiveProject = proj;
-                    Text = $"{proj.Name} [{proj.Location}]";
-                    treeView1.Nodes.Add(proj.ToNode());
-                }
+                var folder = openFileDialog.FileName.Replace($"\\{openFileDialog.SafeFileName}", "");
+                var proj = ScadaProject.FromXml(openFileDialog.FileName);
+                proj.FormAdded += Proj_FormAdded;
+                proj.Location = folder;
+                ScadaProject.ActiveProject = proj;
+                Text = $"{proj.Name} [{proj.Location}]";
+                treeView1.Nodes.Add(proj.ToNode());
+                treeView1.ExpandAll();
+                openFileDialog.Dispose();
             }
+        }
+
+        private void Proj_FormAdded()
+        {
+            treeView1.Nodes.Clear();
+            treeView1.Nodes.Add(ScadaProject.ActiveProject.ToNode());
+            treeView1.ExpandAll();
         }
 
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
@@ -134,8 +140,50 @@ namespace MySCADA
 
         private void tlsNewFrm_Click(object sender, EventArgs e)
         {
-            var frm = new VisualEditor();
+            if (ScadaProject.ActiveProject == null)
+            {
+                MessageBox.Show("You have not opened any project. Open or create a new project.");
+                return;
+            }
+
+            var frm = new CreateForm();
             frm.Show();
+        }
+
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node != null && e.Node.Parent != null && e.Node.Parent.Text == "Custom Forms")
+            {
+                ctxDelete.Visible = true;
+                ctxOpen.Visible = true;
+            }
+            else
+            {
+                ctxDelete.Visible = true;
+                ctxOpen.Visible = true;
+            }
+        }
+
+        private void ctxOpen_Click(object sender, EventArgs e)
+        {
+            var form = ScadaProject.ActiveProject.UserForms
+                .FirstOrDefault(x=>x.FormName==treeView1.SelectedNode.Text);
+            if (form != null)
+            {
+                var frm = new UserForm()
+                {
+                    DesignerFile = form.DesignerFile,
+                    FormName = form.FormName,
+                    ScriptFile = form.ScriptFile
+                };
+                var editor = new VisualEditor(frm);
+                editor.Show();
+            }
+        }
+
+        private void ctxDelete_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

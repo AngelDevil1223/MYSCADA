@@ -10,6 +10,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
+using System.IO;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace MySCADA
 {
@@ -29,6 +34,8 @@ namespace MySCADA
         bool cutCheck = false;
         bool copyCheck = false;
         private ToolTip tt;
+
+        UserForm form;
 
         [DllImport("gdi32.dll", ExactSpelling = true)]
         private static extern IntPtr AddFontMemResourceEx(byte[] pbFont, int cbFont, IntPtr pdv, out uint pcFonts);
@@ -285,13 +292,82 @@ namespace MySCADA
             }
         }
 
-        public VisualEditor()
+        public VisualEditor(UserForm f)
         {
             InitializeComponent();
+            form = f;
             pnControls.ControlAdded += (s, e) =>
             {
                 pnControls.ContextMenuStrip = contextMenuStrip1;
             };
+            LoadComponents();
+        }
+        void LoadComponents()
+        {
+            var assembly = Assembly.GetAssembly(typeof(Button));
+
+            var elements = ScadaProject.ActiveProject.ReadForm(form.DesignerFile);
+            var types = assembly.GetTypes();
+
+            foreach (var e in elements.FormElements)
+            {
+                var tp = types.FirstOrDefault(x => x.Name == e.Type);
+                if(tp!=null)
+                {
+                    var props = tp.GetProperties();
+                    dynamic ctrl = Activator.CreateInstance(tp);
+                    ctrl.BringToFront();
+                    ctrl.MouseEnter += new EventHandler(control_MouseEnter);
+                    ctrl.MouseLeave += new EventHandler(control_MouseLeave);
+                    ctrl.MouseDown += new MouseEventHandler(control_MouseDown);
+                    ctrl.MouseMove += new MouseEventHandler(control_MouseMove);
+                    ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
+                    ctrl.Click += new EventHandler(control_Click);
+                    foreach (var a in e.Attributes)
+                    {
+                        var prop = props.FirstOrDefault(y => y.Name == a.Name);
+                        if (prop != null&&a.Value!=null)
+                        {
+                            try
+                            {
+                                prop.SetValue(ctrl, Convert.ChangeType(a.Value, prop.PropertyType));
+                            }
+                            catch (Exception) { }
+                        }
+                    }
+                    pnControls.Controls.Add(ctrl);
+                }
+            }
+        }
+        void SaveForm()
+        {
+            var frm = new ScadaForm();
+            foreach(var c in pnControls.Controls)
+            {
+                var properties = c.GetType().GetProperties();
+                var el = new FElement()
+                {
+                    Type = c.GetType().Name,
+                    //Data = c,
+                    Attributes=properties.Select(x=>new FElementAttribute()
+                    {
+                        Name=x.Name,
+                        Type=x.PropertyType.Name,
+                        Value=x.GetValue(c)?.ToString()
+                    }).ToList()
+                };
+                frm.FormElements.Add(el);
+            }
+            var str = JsonConvert.SerializeObject(frm);
+
+
+            string loc = $"{ScadaProject.ActiveProject.Location}\\UserForms";
+
+            FileInfo info = new FileInfo($"{loc}\\{form.DesignerFile}");
+            info.Directory.Create();
+
+            File.WriteAllText($"{loc}\\{form.DesignerFile}", str);
+            MessageBox.Show("Changes committed successfully", "Success");
         }
 
         private void pnControls_MouseDown(object sender, MouseEventArgs e)
@@ -461,6 +537,11 @@ namespace MySCADA
         private void VisualEditor_Load(object sender, EventArgs e)
         {
             ControlList.objDGVBind.Clear();
+        }
+
+        private void tlsSaveChanges_Click(object sender, EventArgs e)
+        {
+            SaveForm();
         }
 
         private void pnControls_MouseMove(object sender, MouseEventArgs e)
