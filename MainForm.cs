@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,39 +13,63 @@ namespace MySCADA
 {
     public partial class MainForm : Form
     {
-        private int childFormNumber = 0;
-
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void ShowNewForm(object sender, EventArgs e)
+        private void NewProject(object sender, EventArgs e)
         {
-            Form childForm = new VisualEditor();
-            //childForm.MdiParent = this;
-            childForm.Show();
+            Stream myStream;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "SCADA projects (*.scdproj)|*.scdproj";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+            saveFileDialog1.Title = "New SCADA Project";
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if ((myStream = saveFileDialog1.OpenFile()) != null)
+                {
+                    myStream.Close();
+                    ModifyProjectFile(saveFileDialog1.FileName);
+                }
+            }
+        }
+
+        void ModifyProjectFile(string fileName)
+        {
+            string title = fileName.Split("\\").LastOrDefault();
+            var proj = new ScadaProject();
+            proj.Name = title.Replace(".scdproj", "");
+            proj.Location = fileName.Replace($"\\{title}", "");
+
+            var projectContent = ScadaProject.ToFileFormat(proj);
+            File.WriteAllText(fileName, projectContent);
+            ScadaProject.ActiveProject = proj;
+            Text = $"{proj.Name} [{proj.Location}]";
+            treeView1.Nodes.Add(proj.ToNode());
         }
 
         private void OpenFile(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            openFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            openFileDialog.Filter = "SCADA projects (*.scdproj)|*.scdproj|All Files (*.*)|*.*";
             if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                string FileName = openFileDialog.FileName;
-            }
-        }
-
-        private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
-            if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                string FileName = saveFileDialog.FileName;
+                //var fl = File.ReadAllText(openFileDialog.FileName);
+                Stream stream = null;
+                if ((stream = openFileDialog.OpenFile()) != null)
+                {
+                    var folder = openFileDialog.FileName.Replace($"\\{openFileDialog.SafeFileName}", "");
+                    var proj = ScadaProject.FromXml(stream);
+                    proj.Location = folder;
+                    ScadaProject.ActiveProject = proj;
+                    Text = $"{proj.Name} [{proj.Location}]";
+                    treeView1.Nodes.Add(proj.ToNode());
+                }
             }
         }
 
@@ -101,6 +126,16 @@ namespace MySCADA
             {
                 childForm.Close();
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void tlsNewFrm_Click(object sender, EventArgs e)
+        {
+            var frm = new VisualEditor();
+            frm.Show();
         }
     }
 }

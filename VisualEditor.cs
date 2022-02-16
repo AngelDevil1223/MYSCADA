@@ -52,11 +52,6 @@ namespace MySCADA
             SE,
             None
         }
-
-        private void frmMaindesign_Load(object sender, EventArgs e)
-        {
-            ControlList.objDGVBind.Clear();
-        }
         private string FontToString(Font font)
         {
             return font.FontFamily.Name + ":" + font.Size + ":" + (int)font.Style;
@@ -293,6 +288,10 @@ namespace MySCADA
         public VisualEditor()
         {
             InitializeComponent();
+            pnControls.ControlAdded += (s, e) =>
+            {
+                pnControls.ContextMenuStrip = contextMenuStrip1;
+            };
         }
 
         private void pnControls_MouseDown(object sender, MouseEventArgs e)
@@ -320,7 +319,6 @@ namespace MySCADA
             ctrl.MouseMove += new MouseEventHandler(control_MouseMove);
             ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
             ctrl.Click += new EventHandler(control_Click);
-
             pnControls.Controls.Add(ctrl);
         }
 
@@ -445,6 +443,24 @@ namespace MySCADA
             ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
 
             pnControls.Controls.Add(ctrl);
+        }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Form();
+            form.Controls.Add(pnControls);
+            form.Text = "Test form";
+            form.Show();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void VisualEditor_Load(object sender, EventArgs e)
+        {
+            ControlList.objDGVBind.Clear();
         }
 
         private void pnControls_MouseMove(object sender, MouseEventArgs e)
