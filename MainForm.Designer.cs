@@ -31,8 +31,8 @@ namespace MySCADA
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,6 +79,7 @@ namespace MySCADA
             this.printPreviewToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.tlsNewFrm = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -88,7 +89,9 @@ namespace MySCADA
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.tlsNewFrm = new System.Windows.Forms.ToolStripButton();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -96,6 +99,7 @@ namespace MySCADA
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -495,6 +499,16 @@ namespace MySCADA
             this.helpToolStripButton.Size = new System.Drawing.Size(23, 28);
             this.helpToolStripButton.Text = "Help";
             // 
+            // tlsNewFrm
+            // 
+            this.tlsNewFrm.Image = ((System.Drawing.Image)(resources.GetObject("tlsNewFrm.Image")));
+            this.tlsNewFrm.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tlsNewFrm.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsNewFrm.Name = "tlsNewFrm";
+            this.tlsNewFrm.Size = new System.Drawing.Size(88, 28);
+            this.tlsNewFrm.Text = "New form";
+            this.tlsNewFrm.Click += new System.EventHandler(this.tlsNewFrm_Click);
+            // 
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -532,12 +546,14 @@ namespace MySCADA
             // 
             // treeView1
             // 
+            this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(245, 446);
             this.treeView1.TabIndex = 0;
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // listView1
             // 
@@ -548,8 +564,8 @@ namespace MySCADA
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
+            listViewItem1,
+            listViewItem2});
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(488, 446);
@@ -569,15 +585,34 @@ namespace MySCADA
             // 
             this.columnHeader3.Text = "Last change";
             // 
-            // tlsNewFrm
+            // contextMenuStrip1
             // 
-            this.tlsNewFrm.Image = ((System.Drawing.Image)(resources.GetObject("tlsNewFrm.Image")));
-            this.tlsNewFrm.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tlsNewFrm.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tlsNewFrm.Name = "tlsNewFrm";
-            this.tlsNewFrm.Size = new System.Drawing.Size(88, 28);
-            this.tlsNewFrm.Text = "New form";
-            this.tlsNewFrm.Click += new System.EventHandler(this.tlsNewFrm_Click);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctxOpen,
+            this.ctxDelete});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(116, 64);
+            // 
+            // ctxOpen
+            // 
+            this.ctxOpen.Image = ((System.Drawing.Image)(resources.GetObject("ctxOpen.Image")));
+            this.ctxOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ctxOpen.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ctxOpen.Name = "ctxOpen";
+            this.ctxOpen.Size = new System.Drawing.Size(115, 30);
+            this.ctxOpen.Text = "&Open";
+            this.ctxOpen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ctxOpen.Click += new System.EventHandler(this.ctxOpen_Click);
+            // 
+            // ctxDelete
+            // 
+            this.ctxDelete.Image = global::MySCADA.Properties.Resources.DeleteS;
+            this.ctxDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ctxDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ctxDelete.Name = "ctxDelete";
+            this.ctxDelete.Size = new System.Drawing.Size(115, 30);
+            this.ctxDelete.Text = "&Delete";
+            this.ctxDelete.Click += new System.EventHandler(this.ctxDelete_Click);
             // 
             // MainForm
             // 
@@ -605,6 +640,7 @@ namespace MySCADA
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -668,6 +704,9 @@ namespace MySCADA
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ToolStripButton tlsNewFrm;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem ctxOpen;
+        private System.Windows.Forms.ToolStripMenuItem ctxDelete;
     }
 }
 
