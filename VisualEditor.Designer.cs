@@ -40,7 +40,6 @@ namespace MySCADA
             this.toolRadioButton = new System.Windows.Forms.ToolStripButton();
             this.toolDatePicker = new System.Windows.Forms.ToolStripButton();
             this.toolImage = new System.Windows.Forms.ToolStripButton();
-            this.pnControls = new System.Windows.Forms.Panel();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ctxPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.ctxDeleteAll = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +53,8 @@ namespace MySCADA
             this.ctxDeleteSelected = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.ToolStrip();
             this.tlsSaveChanges = new System.Windows.Forms.ToolStripButton();
+            this.pnControls = new System.Windows.Forms.Panel();
+            this.tlsViewCode = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -174,18 +175,6 @@ namespace MySCADA
             this.toolImage.Text = "Image";
             this.toolImage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pnControls
-            // 
-            this.pnControls.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.pnControls.ContextMenuStrip = this.contextMenuStrip2;
-            this.pnControls.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnControls.Location = new System.Drawing.Point(104, 31);
-            this.pnControls.Name = "pnControls";
-            this.pnControls.Size = new System.Drawing.Size(487, 419);
-            this.pnControls.TabIndex = 25;
-            this.pnControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnControls_MouseDown);
-            this.pnControls.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnControls_MouseMove);
-            // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -286,7 +275,8 @@ namespace MySCADA
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tlsSaveChanges});
+            this.tlsSaveChanges,
+            this.tlsViewCode});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 31);
@@ -305,6 +295,29 @@ namespace MySCADA
             this.tlsSaveChanges.Text = "Save changes";
             this.tlsSaveChanges.ToolTipText = "Save changes";
             this.tlsSaveChanges.Click += new System.EventHandler(this.tlsSaveChanges_Click);
+            // 
+            // pnControls
+            // 
+            this.pnControls.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.pnControls.ContextMenuStrip = this.contextMenuStrip2;
+            this.pnControls.Location = new System.Drawing.Point(104, 31);
+            this.pnControls.Name = "pnControls";
+            this.pnControls.Size = new System.Drawing.Size(487, 419);
+            this.pnControls.TabIndex = 25;
+            this.pnControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnControls_MouseDown);
+            this.pnControls.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnControls_MouseMove);
+            // 
+            // tlsViewCode
+            // 
+            this.tlsViewCode.Image = ((System.Drawing.Image)(resources.GetObject("tlsViewCode.Image")));
+            this.tlsViewCode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsViewCode.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tlsViewCode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsViewCode.Name = "tlsViewCode";
+            this.tlsViewCode.Size = new System.Drawing.Size(81, 28);
+            this.tlsViewCode.Text = "View code";
+            this.tlsViewCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsViewCode.Click += new System.EventHandler(this.tlsViewCode_Click);
             // 
             // VisualEditor
             // 
@@ -338,7 +351,6 @@ namespace MySCADA
         private System.Windows.Forms.ToolStripButton toolTextBox;
         private System.Windows.Forms.ToolStripButton toolRadioButton;
         private System.Windows.Forms.ToolStripButton toolDatePicker;
-        private System.Windows.Forms.Panel pnControls;
         private System.Windows.Forms.PropertyGrid propertyGrid1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripButton toolImage;
@@ -353,5 +365,7 @@ namespace MySCADA
         private System.Windows.Forms.ToolStripMenuItem ctxDeleteAll;
         private System.Windows.Forms.ToolStrip menuStrip1;
         private System.Windows.Forms.ToolStripButton tlsSaveChanges;
+        private System.Windows.Forms.ToolStripButton tlsViewCode;
+        private System.Windows.Forms.Panel pnControls;
     }
 }
