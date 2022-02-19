@@ -85,13 +85,13 @@ namespace MySCADA
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctxDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ctxOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctxDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -555,6 +555,35 @@ namespace MySCADA
             this.treeView1.TabIndex = 0;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctxOpen,
+            this.ctxDelete});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(116, 64);
+            // 
+            // ctxOpen
+            // 
+            this.ctxOpen.Image = ((System.Drawing.Image)(resources.GetObject("ctxOpen.Image")));
+            this.ctxOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ctxOpen.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ctxOpen.Name = "ctxOpen";
+            this.ctxOpen.Size = new System.Drawing.Size(115, 30);
+            this.ctxOpen.Text = "&Open";
+            this.ctxOpen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ctxOpen.Click += new System.EventHandler(this.ctxOpen_Click);
+            // 
+            // ctxDelete
+            // 
+            this.ctxDelete.Image = global::MySCADA.Properties.Resources.DeleteS;
+            this.ctxDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ctxDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ctxDelete.Name = "ctxDelete";
+            this.ctxDelete.Size = new System.Drawing.Size(115, 30);
+            this.ctxDelete.Text = "&Delete";
+            this.ctxDelete.Click += new System.EventHandler(this.ctxDelete_Click);
+            // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -584,35 +613,6 @@ namespace MySCADA
             // columnHeader3
             // 
             this.columnHeader3.Text = "Last change";
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ctxOpen,
-            this.ctxDelete});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(116, 64);
-            // 
-            // ctxOpen
-            // 
-            this.ctxOpen.Image = ((System.Drawing.Image)(resources.GetObject("ctxOpen.Image")));
-            this.ctxOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ctxOpen.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ctxOpen.Name = "ctxOpen";
-            this.ctxOpen.Size = new System.Drawing.Size(115, 30);
-            this.ctxOpen.Text = "&Open";
-            this.ctxOpen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ctxOpen.Click += new System.EventHandler(this.ctxOpen_Click);
-            // 
-            // ctxDelete
-            // 
-            this.ctxDelete.Image = global::MySCADA.Properties.Resources.DeleteS;
-            this.ctxDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ctxDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.ctxDelete.Name = "ctxDelete";
-            this.ctxDelete.Size = new System.Drawing.Size(115, 30);
-            this.ctxDelete.Text = "&Delete";
-            this.ctxDelete.Click += new System.EventHandler(this.ctxDelete_Click);
             // 
             // MainForm
             // 

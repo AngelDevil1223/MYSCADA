@@ -544,6 +544,12 @@ namespace MySCADA
             SaveForm();
         }
 
+        private void tlsViewCode_Click(object sender, EventArgs e)
+        {
+            var editor = new CodeEditor(form.ScriptFile);
+            editor.Show();
+        }
+
         private void pnControls_MouseMove(object sender, MouseEventArgs e)
         {
             if (SelectedControl != null && e.Button == MouseButtons.Left)

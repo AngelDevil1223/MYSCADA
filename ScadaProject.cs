@@ -55,6 +55,13 @@ namespace MySCADA
             }
             return JsonConvert.DeserializeObject<ScadaForm>(str);
         }
+
+        public string ReadCode(string formName)
+        {
+            var file = $"{Location}\\UserForms\\{formName}";
+            var str = File.ReadAllText(file);
+            return str;
+        }
         public TreeNode ToNode()
         {
             var parent = new TreeNode();

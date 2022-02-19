@@ -185,5 +185,9 @@ namespace MySCADA
         {
 
         }
+
+        private void tlsViewCode_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
