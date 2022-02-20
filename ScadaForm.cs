@@ -16,11 +16,17 @@ namespace MySCADA
     {
         public string Type { get; set; }
         public List<FElementAttribute> Attributes { get; set; } = new();
+        public List<FElementEvent> Events { get; set; } = new();
     }
     public class FElementAttribute
     {
         public string Name { get; set; }
         public string Type { get; set; }
         public string Value { get; set; }
+    }
+    public class FElementEvent
+    {
+        public string Event { get; set; }
+        public string Handler { get; set; }
     }
 }
