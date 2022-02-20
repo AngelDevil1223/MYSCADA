@@ -308,13 +308,30 @@ namespace MySCADA
 
             var elements = ScadaProject.ActiveProject.ReadForm(form.DesignerFile);
             var types = assembly.GetTypes();
-
+            if (elements.FormElements.Count == 0)
+            {
+                var panel = new Panel()
+                {
+                    Size = new Size(Width = 249, Height = 67)
+                };
+                panel.Name = "MainPanel";
+                panel.BringToFront();
+                panel.MouseEnter += new EventHandler(control_MouseEnter);
+                panel.MouseLeave += new EventHandler(control_MouseLeave);
+                panel.MouseDown += new MouseEventHandler(control_MouseDown);
+                panel.MouseMove += new MouseEventHandler(control_MouseMove);
+                panel.MouseUp += new MouseEventHandler(control_MouseUp);
+                panel.Click += new EventHandler(control_Click);
+                panel.BackColor = SystemColors.InactiveCaption;
+                pnControls.Controls.Add(panel);
+            }
             foreach (var e in elements.FormElements)
             {
                 var tp = types.FirstOrDefault(x => x.Name == e.Type);
-                if(tp!=null)
+                if (tp != null)
                 {
                     var props = tp.GetProperties();
+                    var events = tp.GetEvents();
                     dynamic ctrl = Activator.CreateInstance(tp);
                     ctrl.BringToFront();
                     ctrl.MouseEnter += new EventHandler(control_MouseEnter);
@@ -326,7 +343,7 @@ namespace MySCADA
                     foreach (var a in e.Attributes)
                     {
                         var prop = props.FirstOrDefault(y => y.Name == a.Name);
-                        if (prop != null&&a.Value!=null)
+                        if (prop != null && a.Value != null)
                         {
                             try
                             {
@@ -342,18 +359,23 @@ namespace MySCADA
         void SaveForm()
         {
             var frm = new ScadaForm();
-            foreach(var c in pnControls.Controls)
+            foreach (var c in pnControls.Controls)
             {
                 var properties = c.GetType().GetProperties();
+                var events = c.GetType().GetEvents();
                 var el = new FElement()
                 {
                     Type = c.GetType().Name,
-                    //Data = c,
-                    Attributes=properties.Select(x=>new FElementAttribute()
+                    Attributes = properties.Select(x => new FElementAttribute()
                     {
-                        Name=x.Name,
-                        Type=x.PropertyType.Name,
-                        Value=x.GetValue(c)?.ToString()
+                        Name = x.Name,
+                        Type = x.PropertyType.Name,
+                        Value = x.GetValue(c)?.ToString()
+                    }).ToList(),
+                    Events = events.Where(x => x.GetRaiseMethod() != null).Select(e => new FElementEvent()
+                    {
+                        Event = e.Name,
+                        Handler = e.GetRaiseMethod().Name
                     }).ToList()
                 };
                 frm.FormElements.Add(el);
@@ -549,6 +571,444 @@ namespace MySCADA
             var editor = new CodeEditor(form.ScriptFile);
             editor.Show();
         }
+
+        private void ctxCopy_Click(object sender, EventArgs e)
+        {
+            if (SelectedControl != null)
+            {
+                copiedControl = SelectedControl;
+                if (copiedControl != null)
+                {
+                    cutCheck = false;
+                    copyCheck = true;
+                    ctxPaste.Enabled = true;
+                }
+            }
+        }
+
+        private void ctxCut_Click(object sender, EventArgs e)
+        {
+            if (SelectedControl != null)
+            {
+                copiedControl = SelectedControl;
+                cutCheck = true;
+                ctxPaste.Enabled = true;
+            }
+
+            if (SelectedControl != null)
+            {
+                pnControls.Controls.Remove(SelectedControl);
+                propertyGrid1.SelectedObject = null;
+                pnControls.Invalidate();
+            }
+        }
+
+        private void ctxBringToFront_Click(object sender, EventArgs e)
+        {
+            if (SelectedControl != null)
+            {
+                SelectedControl.BringToFront();
+            }
+        }
+
+        private void ctxSendToBack_Click(object sender, EventArgs e)
+        {
+            if (SelectedControl != null)
+            {
+                SelectedControl.SendToBack();
+            }
+        }
+
+        private void ctxDeleteSelected_Click(object sender, EventArgs e)
+        {
+            if (SelectedControl != null&&SelectedControl.Name!= "MainPanel")
+            {
+                pnControls.Controls.Remove(SelectedControl);
+                propertyGrid1.SelectedObject = null;
+                pnControls.Invalidate();
+            }
+        }
+
+        private void ctxPaste_Click(object sender, EventArgs e)
+        {
+            if (copiedControl != null)
+            {
+                PasteNewControl();
+                //control.Invalidate();
+                if (copyCheck == true)
+                {
+                    ctxPaste.Enabled = true;
+                }
+                if (cutCheck == true)
+                {
+                    ctxPaste.Enabled = false;
+                    cutCheck = false;
+                }
+            }
+        }
+
+        private void PasteNewControl()
+        {
+            try
+            {
+
+                Random rnd = new Random();
+                int randNumber = rnd.Next(1, 1000);
+                String newControlsName = copiedControl.Name + "_" + randNumber;
+
+                switch (copiedControl.GetType().ToString())
+                {
+                    case "System.Windows.Forms.PictureBox":
+                        try
+                        {
+                            PictureBox pic = copiedControl as PictureBox;
+                            PictureBox ctrl = new PictureBox();
+                            ctrl.Name = newControlsName;
+                            ctrl.SendToBack();
+                            ctrl.BackColor = copiedControl.BackColor;
+                            ctrl.ForeColor = copiedControl.ForeColor;
+                            ctrl.Image = pic.Image;
+                            SetControlDefaults(ctrl);
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+
+                        break;
+                    case "System.Windows.Forms.DataGridView":
+                        {
+                            DataGridView ctrl = new DataGridView();
+                            ctrl.Name = newControlsName;
+                            SetControlDefaults(ctrl);
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        break;
+                    case "System.Windows.Forms.Label":
+                        {
+                            Label ctrl = new Label();
+                            ctrl.Name = newControlsName;
+                            SetControlDefaults(ctrl);
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        break;
+                    case "System.Windows.Forms.Button":
+                        {
+                            System.Drawing.Color myBackColor = new System.Drawing.Color();
+                            myBackColor = System.Drawing.ColorTranslator.FromHtml(gParam[8]);
+                            Button ctrl = new Button();
+                            ctrl.Name = newControlsName;
+                            SetControlDefaults(ctrl);
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        break;
+                    case "System.Windows.Forms.ComboBox":
+                        {
+                            ComboBox ctrl = new ComboBox();
+                            ctrl.Name = newControlsName;
+                            SetControlDefaults(ctrl);
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        break;
+                    case "System.Windows.Forms.ListBox":
+                        {
+                            ListBox ctrl = new ListBox();
+                            ctrl.Name = newControlsName;
+                            SetControlDefaults(ctrl);
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        break;
+                    case "System.Windows.Forms.Panel":
+                        {
+                            Panel ctrl = new Panel();
+                            ctrl.Name = newControlsName;
+                            SetControlDefaults(ctrl);
+                            ctrl.SendToBack();
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        break;
+                    case "System.Windows.Forms.NumericUpDown":
+                        {
+                            NumericUpDown ctrl = new NumericUpDown();
+                            ctrl.Name = newControlsName;
+                            SetControlDefaults(ctrl);
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        break;
+                    case "System.Windows.Forms.TreeView":
+                        {
+                            TreeView ctrl = new TreeView();
+                            ctrl.Name = newControlsName;
+                            SetControlDefaults(ctrl);
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        break;
+                    case "System.Windows.Forms.DateTimePicker":
+                        {
+                            DateTimePicker ctrl = new DateTimePicker();
+                            ctrl.Name = newControlsName;
+                            SetControlDefaults(ctrl);
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        break;
+                    case "System.Windows.Forms.TextBox":
+                        {
+                            TextBox ctrl = new TextBox();
+                            ctrl.Name = newControlsName;
+                            SetControlDefaults(ctrl);
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        break;
+                    case "System.Windows.Forms.RadioButton":
+                        {
+                            RadioButton ctrl = new RadioButton();
+                            ctrl.Name = newControlsName;
+                            SetControlDefaults(ctrl);
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        break;
+                    case "System.Windows.Forms.CheckBox":
+                        {
+                            CheckBox ctrl = new CheckBox();
+                            ctrl.Name = newControlsName;
+                            SetControlDefaults(ctrl);
+                            pnControls.Controls.Add(ctrl);
+                        }
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        void SetControlDefaults(Control ctrl)
+        {
+            ctrl.Location = new Point(copiedControl.Location.X + 10, copiedControl.Location.Y + 10);
+            ctrl.Text = copiedControl.Text;
+            ctrl.Font = copiedControl.Font;
+            ctrl.BackColor = copiedControl.BackColor;
+            ctrl.ForeColor = copiedControl.ForeColor;
+            ctrl.Size = copiedControl.Size;
+            ctrl.MouseEnter += new EventHandler(control_MouseEnter);
+            ctrl.MouseLeave += new EventHandler(control_MouseLeave);
+            ctrl.MouseDown += new MouseEventHandler(control_MouseDown);
+            ctrl.MouseMove += new MouseEventHandler(control_MouseMove);
+            ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
+        }
+
+        private void ctxDeleteAll_Click(object sender, EventArgs e)
+        {
+            foreach(Control ctrl in pnControls.Controls)
+            {
+                if(ctrl.Name!= "MainPanel")
+                {
+                    pnControls.Controls.Remove(ctrl);
+                }
+            }
+            pnControls.Controls.Clear();
+            propertyGrid1.SelectedObject = null;
+            pnControls.Invalidate();
+        }
+
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+            if (SelectedControl != null)
+            {
+                Point pos = pnControls.PointToClient(MousePosition);
+                if ((pos.X >= SelectedControl.Location.X - DRAG_HANDLE_SIZE &&
+                    pos.X <= SelectedControl.Location.X) &&
+                    (pos.Y >= SelectedControl.Location.Y - DRAG_HANDLE_SIZE &&
+                    pos.Y <= SelectedControl.Location.Y))
+                {
+                    direction = Direction.NW;
+                    Cursor = Cursors.SizeNWSE;
+                }
+                else if ((pos.X >= SelectedControl.Location.X + SelectedControl.Width &&
+                    pos.X <= SelectedControl.Location.X + SelectedControl.Width + DRAG_HANDLE_SIZE &&
+                    pos.Y >= SelectedControl.Location.Y + SelectedControl.Height &&
+                    pos.Y <= SelectedControl.Location.Y + SelectedControl.Height + DRAG_HANDLE_SIZE))
+                {
+                    direction = Direction.SE;
+                    Cursor = Cursors.SizeNWSE;
+                }
+                else if ((pos.X >= SelectedControl.Location.X + SelectedControl.Width / 2 - DRAG_HANDLE_SIZE / 2) &&
+                    pos.X <= SelectedControl.Location.X + SelectedControl.Width / 2 + DRAG_HANDLE_SIZE / 2 &&
+                    pos.Y >= SelectedControl.Location.Y - DRAG_HANDLE_SIZE &&
+                    pos.Y <= SelectedControl.Location.Y)
+                {
+                    direction = Direction.N;
+                    Cursor = Cursors.SizeNS;
+                }
+                else if ((pos.X >= SelectedControl.Location.X + SelectedControl.Width / 2 - DRAG_HANDLE_SIZE / 2) &&
+                    pos.X <= SelectedControl.Location.X + SelectedControl.Width / 2 + DRAG_HANDLE_SIZE / 2 &&
+                    pos.Y >= SelectedControl.Location.Y + SelectedControl.Height &&
+                    pos.Y <= SelectedControl.Location.Y + SelectedControl.Height + DRAG_HANDLE_SIZE)
+                {
+                    direction = Direction.S;
+                    Cursor = Cursors.SizeNS;
+                }
+                else if ((pos.X >= SelectedControl.Location.X - DRAG_HANDLE_SIZE &&
+                    pos.X <= SelectedControl.Location.X &&
+                    pos.Y >= SelectedControl.Location.Y + SelectedControl.Height / 2 - DRAG_HANDLE_SIZE / 2 &&
+                    pos.Y <= SelectedControl.Location.Y + SelectedControl.Height / 2 + DRAG_HANDLE_SIZE / 2))
+                {
+                    direction = Direction.W;
+                    Cursor = Cursors.SizeWE;
+                }
+                else if ((pos.X >= SelectedControl.Location.X + SelectedControl.Width &&
+                    pos.X <= SelectedControl.Location.X + SelectedControl.Width + DRAG_HANDLE_SIZE &&
+                    pos.Y >= SelectedControl.Location.Y + SelectedControl.Height / 2 - DRAG_HANDLE_SIZE / 2 &&
+                    pos.Y <= SelectedControl.Location.Y + SelectedControl.Height / 2 + DRAG_HANDLE_SIZE / 2))
+                {
+                    direction = Direction.E;
+                    Cursor = Cursors.SizeWE;
+                }
+                else if ((pos.X >= SelectedControl.Location.X + SelectedControl.Width &&
+                    pos.X <= SelectedControl.Location.X + SelectedControl.Width + DRAG_HANDLE_SIZE) &&
+                    (pos.Y >= SelectedControl.Location.Y - DRAG_HANDLE_SIZE &&
+                    pos.Y <= SelectedControl.Location.Y))
+                {
+                    direction = Direction.NE;
+                    Cursor = Cursors.SizeNESW;
+                }
+                else if ((pos.X >= SelectedControl.Location.X - DRAG_HANDLE_SIZE &&
+                    pos.X <= SelectedControl.Location.X + DRAG_HANDLE_SIZE) &&
+                    (pos.Y >= SelectedControl.Location.Y + SelectedControl.Height - DRAG_HANDLE_SIZE &&
+                    pos.Y <= SelectedControl.Location.Y + SelectedControl.Height + DRAG_HANDLE_SIZE))
+                {
+                    direction = Direction.SW;
+                    Cursor = Cursors.SizeNESW;
+                }
+                else
+                {
+                    Cursor = Cursors.Default;
+                    direction = Direction.None;
+                }
+            }
+            else
+            {
+                direction = Direction.None;
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void tlsRun_Click(object sender, EventArgs e)
+        {
+            Form frm = new Form();
+            frm.Text = form.FormName;
+            foreach (var c in pnControls.Controls)
+            {
+                dynamic cd = c;
+                if (cd.Name == "MainPanel")
+                {
+                    var panel = ((Panel)c).Clone();
+                    frm.Size = panel.Size;
+                    frm.BackColor = panel.BackColor;
+                    break;
+                }
+            }
+            foreach (var ctrl in pnControls.Controls)
+            {
+                var b = new Button();
+                //var ctrl = ComponentCopy.Clone(c);
+                dynamic sc = ctrl;
+                if(sc.Name!= "MainPanel")
+                {
+                    var tp = ctrl.GetType();
+                    switch (tp.Name)
+                    {
+                        case nameof(Button):
+                            frm.Controls.Add(((Button)ctrl).Clone());
+                            break;
+                        case nameof(ComboBox):
+                            frm.Controls.Add(((ComboBox)ctrl).Clone());
+                            break;
+                        case nameof(Label):
+                            frm.Controls.Add(((Label)ctrl).Clone());
+                            break;
+                        case nameof(TextBox):
+                            frm.Controls.Add(((TextBox)ctrl).Clone());
+                            break;
+                        case nameof(RadioButton):
+                            frm.Controls.Add(((RadioButton)ctrl).Clone());
+                            break;
+                        case nameof(DateTimePicker):
+                            frm.Controls.Add(((DateTimePicker)ctrl).Clone());
+                            break;
+                        case nameof(CheckBox):
+                            frm.Controls.Add(((CheckBox)ctrl).Clone());
+                            break;
+                        case nameof(PictureBox):
+                            frm.Controls.Add(((PictureBox)ctrl).Clone());
+                            break;
+                    }
+                    //if (panel != null)
+                    //{
+                    //    switch (tp.Name)
+                    //    {
+                    //        case nameof(Button):
+                    //            panel.Controls.Add((Button)ctrl);
+                    //            break;
+                    //        case nameof(ComboBox):
+                    //            panel.Controls.Add((ComboBox)ctrl);
+                    //            break;
+                    //        case nameof(Label):
+                    //            panel.Controls.Add((Label)ctrl);
+                    //            break;
+                    //        case nameof(TextBox):
+                    //            panel.Controls.Add((TextBox)ctrl);
+                    //            break;
+                    //        case nameof(RadioButton):
+                    //            panel.Controls.Add((RadioButton)ctrl);
+                    //            break;
+                    //        case nameof(DateTimePicker):
+                    //            panel.Controls.Add((DateTimePicker)ctrl);
+                    //            break;
+                    //        case nameof(CheckBox):
+                    //            panel.Controls.Add((CheckBox)ctrl);
+                    //            break;
+                    //        case nameof(PictureBox):
+                    //            panel.Controls.Add((PictureBox)ctrl);
+                    //            break;
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    switch (tp.Name)
+                    //    {
+                    //        case nameof(Button):
+                    //            frm.Controls.Add((Button)ctrl);
+                    //            break;
+                    //        case nameof(ComboBox):
+                    //            frm.Controls.Add((ComboBox)ctrl);
+                    //            break;
+                    //        case nameof(Label):
+                    //            frm.Controls.Add((Label)ctrl);
+                    //            break;
+                    //        case nameof(TextBox):
+                    //            frm.Controls.Add((TextBox)ctrl);
+                    //            break;
+                    //        case nameof(RadioButton):
+                    //            frm.Controls.Add((RadioButton)ctrl);
+                    //            break;
+                    //        case nameof(DateTimePicker):
+                    //            frm.Controls.Add((DateTimePicker)ctrl);
+                    //            break;
+                    //        case nameof(CheckBox):
+                    //            frm.Controls.Add((CheckBox)ctrl);
+                    //            break;
+                    //        case nameof(PictureBox):
+                    //            frm.Controls.Add((PictureBox)ctrl);
+                    //            break;
+                    //    }
+                    //}
+                }
+            }
+            frm.Show();
+        }
+
+        
 
         private void pnControls_MouseMove(object sender, MouseEventArgs e)
         {
