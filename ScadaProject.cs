@@ -19,6 +19,7 @@ namespace MySCADA
 
         public string Name { get; set; }
         public string Location { get; set; }
+        public string DefaultForm { get; set; }
         public List<UserForm> UserForms { get; set; } = new List<UserForm>();
         public void RaiseEvent()
         {
@@ -43,6 +44,12 @@ namespace MySCADA
             XmlSerializer serializer = new XmlSerializer(typeof(ScadaProject));
             var proj = (ScadaProject)serializer.Deserialize(fl);
             return proj;
+        }
+        public void SaveChanges()
+        {
+            var text = ToFileFormat(this);
+            File.WriteAllText($"{Location}\\{Name}.scdproj", text);
+            RaiseEvent();
         }
 
         public ScadaForm ReadForm(string formName)
@@ -79,6 +86,11 @@ namespace MySCADA
                 });
             });
             return parent;
+        }
+
+        public UserForm GetDefaultForm()
+        {
+            return UserForms.FirstOrDefault(x => x.FormName == DefaultForm);
         }
     }
 

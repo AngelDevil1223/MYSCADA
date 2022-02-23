@@ -66,8 +66,14 @@ namespace MySCADA
                 proj.Location = folder;
                 ScadaProject.ActiveProject = proj;
                 Text = $"{proj.Name} [{proj.Location}]";
+                treeView1.Nodes.Clear();
                 treeView1.Nodes.Add(proj.ToNode());
                 treeView1.ExpandAll();
+                proj.UserForms.ForEach(x =>
+                {
+                    tlsDefaultForm.DropDownItems.Add(x.FormName, null);
+                });
+                tlsDefaultForm.Text = $"Default: {proj.DefaultForm}";
                 openFileDialog.Dispose();
             }
         }
@@ -77,6 +83,13 @@ namespace MySCADA
             treeView1.Nodes.Clear();
             treeView1.Nodes.Add(ScadaProject.ActiveProject.ToNode());
             treeView1.ExpandAll();
+
+            ScadaProject.ActiveProject.UserForms.ForEach(x =>
+            {
+                var current = tlsDefaultForm.DropDownItems.Cast<ToolStripItem>();
+                if(!current.Any(c=>c.Text==x.FormName))
+                    tlsDefaultForm.DropDownItems.Add(x.FormName, null);
+            });
         }
 
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
@@ -186,8 +199,33 @@ namespace MySCADA
 
         }
 
-        private void tlsViewCode_Click(object sender, EventArgs e)
+        private void tlsDefaultForm_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            var item = e.ClickedItem;
+            if (item != null)
+            {
+                ScadaProject.ActiveProject.DefaultForm = item.Text;
+                tlsDefaultForm.Text = $"Default: {item.Text}";
+                ScadaProject.ActiveProject.SaveChanges();
+            }
+        }
+
+        private void tlsRun_Click(object sender, EventArgs e)
+        {
+            if (ScadaProject.ActiveProject == null)
+            {
+                MessageBox.Show("Open or create a new project", "Error");
+                return;
+            }
+            if (ScadaProject.ActiveProject.DefaultForm == null)
+            {
+                MessageBox.Show("Default form not set", "Error");
+                return;
+            }
+            var gen = new FormGenerator();
+            var fm = ScadaProject.ActiveProject.GetDefaultForm();
+            var form = gen.FromFile(fm);
+            form.Show();
         }
     }
 }

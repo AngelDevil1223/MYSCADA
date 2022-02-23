@@ -80,6 +80,7 @@ namespace MySCADA
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.tlsNewFrm = new System.Windows.Forms.ToolStripButton();
+            this.tlsDefaultForm = new System.Windows.Forms.ToolStripSplitButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -92,6 +93,7 @@ namespace MySCADA
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.tlsRun = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -435,7 +437,9 @@ namespace MySCADA
             this.printPreviewToolStripButton,
             this.toolStripSeparator2,
             this.helpToolStripButton,
-            this.tlsNewFrm});
+            this.tlsNewFrm,
+            this.tlsDefaultForm,
+            this.tlsRun});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(737, 31);
@@ -508,6 +512,19 @@ namespace MySCADA
             this.tlsNewFrm.Size = new System.Drawing.Size(88, 28);
             this.tlsNewFrm.Text = "New form";
             this.tlsNewFrm.Click += new System.EventHandler(this.tlsNewFrm_Click);
+            // 
+            // tlsDefaultForm
+            // 
+            this.tlsDefaultForm.Image = ((System.Drawing.Image)(resources.GetObject("tlsDefaultForm.Image")));
+            this.tlsDefaultForm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsDefaultForm.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tlsDefaultForm.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsDefaultForm.Name = "tlsDefaultForm";
+            this.tlsDefaultForm.Size = new System.Drawing.Size(106, 28);
+            this.tlsDefaultForm.Text = "Default form";
+            this.tlsDefaultForm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsDefaultForm.ToolTipText = "Default form";
+            this.tlsDefaultForm.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tlsDefaultForm_DropDownItemClicked);
             // 
             // statusStrip
             // 
@@ -614,6 +631,19 @@ namespace MySCADA
             // 
             this.columnHeader3.Text = "Last change";
             // 
+            // tlsRun
+            // 
+            this.tlsRun.Image = ((System.Drawing.Image)(resources.GetObject("tlsRun.Image")));
+            this.tlsRun.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsRun.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tlsRun.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsRun.Name = "tlsRun";
+            this.tlsRun.Size = new System.Drawing.Size(48, 28);
+            this.tlsRun.Text = "Run";
+            this.tlsRun.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsRun.ToolTipText = "Run";
+            this.tlsRun.Click += new System.EventHandler(this.tlsRun_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -707,6 +737,8 @@ namespace MySCADA
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ctxOpen;
         private System.Windows.Forms.ToolStripMenuItem ctxDelete;
+        private System.Windows.Forms.ToolStripSplitButton tlsDefaultForm;
+        private System.Windows.Forms.ToolStripButton tlsRun;
     }
 }
 

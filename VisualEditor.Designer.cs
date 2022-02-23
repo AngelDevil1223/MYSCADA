@@ -31,15 +31,6 @@ namespace MySCADA
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VisualEditor));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolButton = new System.Windows.Forms.ToolStripButton();
-            this.toolLabel = new System.Windows.Forms.ToolStripButton();
-            this.toolCheckbox = new System.Windows.Forms.ToolStripButton();
-            this.toolAutocomplete = new System.Windows.Forms.ToolStripButton();
-            this.toolTextBox = new System.Windows.Forms.ToolStripButton();
-            this.toolRadioButton = new System.Windows.Forms.ToolStripButton();
-            this.toolDatePicker = new System.Windows.Forms.ToolStripButton();
-            this.toolImage = new System.Windows.Forms.ToolStripButton();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ctxPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.ctxDeleteAll = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,126 +46,28 @@ namespace MySCADA
             this.tlsSaveChanges = new System.Windows.Forms.ToolStripButton();
             this.tlsViewCode = new System.Windows.Forms.ToolStripButton();
             this.tlsRun = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolButton = new System.Windows.Forms.ToolStripButton();
+            this.toolLabel = new System.Windows.Forms.ToolStripButton();
+            this.toolCheckbox = new System.Windows.Forms.ToolStripButton();
+            this.toolAutocomplete = new System.Windows.Forms.ToolStripButton();
+            this.toolTextBox = new System.Windows.Forms.ToolStripButton();
+            this.toolRadioButton = new System.Windows.Forms.ToolStripButton();
+            this.toolDatePicker = new System.Windows.Forms.ToolStripButton();
+            this.toolImage = new System.Windows.Forms.ToolStripButton();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.tlsCircle = new System.Windows.Forms.ToolStripButton();
             this.pnControls = new System.Windows.Forms.Panel();
-            this.toolStrip1.SuspendLayout();
+            this.tlsRectangle = new System.Windows.Forms.ToolStripButton();
             this.contextMenuStrip2.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            this.toolStripContainer1.LeftToolStripPanel.SuspendLayout();
+            this.toolStripContainer1.SuspendLayout();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolButton,
-            this.toolLabel,
-            this.toolCheckbox,
-            this.toolAutocomplete,
-            this.toolTextBox,
-            this.toolRadioButton,
-            this.toolDatePicker,
-            this.toolImage});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 31);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(104, 419);
-            this.toolStrip1.TabIndex = 24;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolButton
-            // 
-            this.toolButton.Image = ((System.Drawing.Image)(resources.GetObject("toolButton.Image")));
-            this.toolButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolButton.Name = "toolButton";
-            this.toolButton.Size = new System.Drawing.Size(101, 20);
-            this.toolButton.Text = "Button";
-            this.toolButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolButton.Click += new System.EventHandler(this.toolButton_Click);
-            // 
-            // toolLabel
-            // 
-            this.toolLabel.Image = ((System.Drawing.Image)(resources.GetObject("toolLabel.Image")));
-            this.toolLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolLabel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolLabel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolLabel.Name = "toolLabel";
-            this.toolLabel.Size = new System.Drawing.Size(101, 20);
-            this.toolLabel.Text = "Label";
-            this.toolLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolLabel.Click += new System.EventHandler(this.toolLabel_Click);
-            // 
-            // toolCheckbox
-            // 
-            this.toolCheckbox.Image = ((System.Drawing.Image)(resources.GetObject("toolCheckbox.Image")));
-            this.toolCheckbox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolCheckbox.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolCheckbox.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolCheckbox.Name = "toolCheckbox";
-            this.toolCheckbox.Size = new System.Drawing.Size(101, 20);
-            this.toolCheckbox.Text = "Checkbox";
-            this.toolCheckbox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolCheckbox.Click += new System.EventHandler(this.toolCheckbox_Click);
-            // 
-            // toolAutocomplete
-            // 
-            this.toolAutocomplete.Image = ((System.Drawing.Image)(resources.GetObject("toolAutocomplete.Image")));
-            this.toolAutocomplete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolAutocomplete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolAutocomplete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolAutocomplete.Name = "toolAutocomplete";
-            this.toolAutocomplete.Size = new System.Drawing.Size(101, 20);
-            this.toolAutocomplete.Text = "Autocomplete";
-            this.toolAutocomplete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolAutocomplete.Click += new System.EventHandler(this.toolAutocomplete_Click);
-            // 
-            // toolTextBox
-            // 
-            this.toolTextBox.Image = ((System.Drawing.Image)(resources.GetObject("toolTextBox.Image")));
-            this.toolTextBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolTextBox.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolTextBox.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolTextBox.Name = "toolTextBox";
-            this.toolTextBox.Size = new System.Drawing.Size(101, 20);
-            this.toolTextBox.Text = "Textbox";
-            this.toolTextBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolTextBox.Click += new System.EventHandler(this.toolTextBox_Click);
-            // 
-            // toolRadioButton
-            // 
-            this.toolRadioButton.Image = ((System.Drawing.Image)(resources.GetObject("toolRadioButton.Image")));
-            this.toolRadioButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolRadioButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolRadioButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolRadioButton.Name = "toolRadioButton";
-            this.toolRadioButton.Size = new System.Drawing.Size(101, 20);
-            this.toolRadioButton.Text = "Radiobutton";
-            this.toolRadioButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolRadioButton.Click += new System.EventHandler(this.toolRadioButton_Click);
-            // 
-            // toolDatePicker
-            // 
-            this.toolDatePicker.Image = ((System.Drawing.Image)(resources.GetObject("toolDatePicker.Image")));
-            this.toolDatePicker.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolDatePicker.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolDatePicker.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolDatePicker.Name = "toolDatePicker";
-            this.toolDatePicker.Size = new System.Drawing.Size(101, 20);
-            this.toolDatePicker.Text = "Date picker";
-            this.toolDatePicker.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolDatePicker.Click += new System.EventHandler(this.toolDatePicker_Click);
-            // 
-            // toolImage
-            // 
-            this.toolImage.Image = ((System.Drawing.Image)(resources.GetObject("toolImage.Image")));
-            this.toolImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolImage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolImage.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolImage.Name = "toolImage";
-            this.toolImage.Size = new System.Drawing.Size(101, 20);
-            this.toolImage.Text = "Image";
-            this.toolImage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // contextMenuStrip2
             // 
@@ -209,9 +102,9 @@ namespace MySCADA
             // propertyGrid1
             // 
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.propertyGrid1.Location = new System.Drawing.Point(597, 31);
+            this.propertyGrid1.Location = new System.Drawing.Point(669, 31);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(203, 419);
+            this.propertyGrid1.Size = new System.Drawing.Size(141, 337);
             this.propertyGrid1.TabIndex = 26;
             // 
             // timer1
@@ -294,7 +187,7 @@ namespace MySCADA
             this.tlsRun});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(810, 31);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -335,6 +228,161 @@ namespace MySCADA
             this.tlsRun.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tlsRun.Click += new System.EventHandler(this.tlsRun_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolButton,
+            this.toolLabel,
+            this.toolCheckbox,
+            this.toolAutocomplete,
+            this.toolTextBox,
+            this.toolRadioButton,
+            this.toolDatePicker,
+            this.toolImage});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 79);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(104, 195);
+            this.toolStrip1.TabIndex = 30;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolButton
+            // 
+            this.toolButton.Image = ((System.Drawing.Image)(resources.GetObject("toolButton.Image")));
+            this.toolButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolButton.Name = "toolButton";
+            this.toolButton.Size = new System.Drawing.Size(102, 20);
+            this.toolButton.Text = "Button";
+            this.toolButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolButton.Click += new System.EventHandler(this.toolButton_Click);
+            // 
+            // toolLabel
+            // 
+            this.toolLabel.Image = ((System.Drawing.Image)(resources.GetObject("toolLabel.Image")));
+            this.toolLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolLabel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolLabel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolLabel.Name = "toolLabel";
+            this.toolLabel.Size = new System.Drawing.Size(102, 20);
+            this.toolLabel.Text = "Label";
+            this.toolLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolLabel.Click += new System.EventHandler(this.toolLabel_Click);
+            // 
+            // toolCheckbox
+            // 
+            this.toolCheckbox.Image = ((System.Drawing.Image)(resources.GetObject("toolCheckbox.Image")));
+            this.toolCheckbox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolCheckbox.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolCheckbox.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolCheckbox.Name = "toolCheckbox";
+            this.toolCheckbox.Size = new System.Drawing.Size(102, 20);
+            this.toolCheckbox.Text = "Checkbox";
+            this.toolCheckbox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolCheckbox.Click += new System.EventHandler(this.toolCheckbox_Click);
+            // 
+            // toolAutocomplete
+            // 
+            this.toolAutocomplete.Image = ((System.Drawing.Image)(resources.GetObject("toolAutocomplete.Image")));
+            this.toolAutocomplete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolAutocomplete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolAutocomplete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolAutocomplete.Name = "toolAutocomplete";
+            this.toolAutocomplete.Size = new System.Drawing.Size(102, 20);
+            this.toolAutocomplete.Text = "Autocomplete";
+            this.toolAutocomplete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolAutocomplete.Click += new System.EventHandler(this.toolAutocomplete_Click);
+            // 
+            // toolTextBox
+            // 
+            this.toolTextBox.Image = ((System.Drawing.Image)(resources.GetObject("toolTextBox.Image")));
+            this.toolTextBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTextBox.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolTextBox.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolTextBox.Name = "toolTextBox";
+            this.toolTextBox.Size = new System.Drawing.Size(102, 20);
+            this.toolTextBox.Text = "Textbox";
+            this.toolTextBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTextBox.Click += new System.EventHandler(this.toolTextBox_Click);
+            // 
+            // toolRadioButton
+            // 
+            this.toolRadioButton.Image = ((System.Drawing.Image)(resources.GetObject("toolRadioButton.Image")));
+            this.toolRadioButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolRadioButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolRadioButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolRadioButton.Name = "toolRadioButton";
+            this.toolRadioButton.Size = new System.Drawing.Size(102, 20);
+            this.toolRadioButton.Text = "Radiobutton";
+            this.toolRadioButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolRadioButton.Click += new System.EventHandler(this.toolRadioButton_Click);
+            // 
+            // toolDatePicker
+            // 
+            this.toolDatePicker.Image = ((System.Drawing.Image)(resources.GetObject("toolDatePicker.Image")));
+            this.toolDatePicker.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolDatePicker.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolDatePicker.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolDatePicker.Name = "toolDatePicker";
+            this.toolDatePicker.Size = new System.Drawing.Size(102, 20);
+            this.toolDatePicker.Text = "Date picker";
+            this.toolDatePicker.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolDatePicker.Click += new System.EventHandler(this.toolDatePicker_Click);
+            // 
+            // toolImage
+            // 
+            this.toolImage.Image = ((System.Drawing.Image)(resources.GetObject("toolImage.Image")));
+            this.toolImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolImage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolImage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolImage.Name = "toolImage";
+            this.toolImage.Size = new System.Drawing.Size(102, 20);
+            this.toolImage.Text = "Image";
+            this.toolImage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolImage.Click += new System.EventHandler(this.toolImage_Click);
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(0, 312);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Left;
+            // 
+            // toolStripContainer1.LeftToolStripPanel
+            // 
+            this.toolStripContainer1.LeftToolStripPanel.Controls.Add(this.toolStrip2);
+            this.toolStripContainer1.LeftToolStripPanel.Controls.Add(this.toolStrip1);
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 31);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(104, 337);
+            this.toolStripContainer1.TabIndex = 31;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tlsCircle,
+            this.tlsRectangle});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 3);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(80, 76);
+            this.toolStrip2.TabIndex = 0;
+            // 
+            // tlsCircle
+            // 
+            this.tlsCircle.Image = ((System.Drawing.Image)(resources.GetObject("tlsCircle.Image")));
+            this.tlsCircle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsCircle.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsCircle.Name = "tlsCircle";
+            this.tlsCircle.Size = new System.Drawing.Size(78, 20);
+            this.tlsCircle.Text = "Circle";
+            this.tlsCircle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsCircle.Click += new System.EventHandler(this.tlsCircle_Click);
+            // 
             // pnControls
             // 
             this.pnControls.BackColor = System.Drawing.SystemColors.Window;
@@ -342,47 +390,56 @@ namespace MySCADA
             this.pnControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnControls.Location = new System.Drawing.Point(104, 31);
             this.pnControls.Name = "pnControls";
-            this.pnControls.Size = new System.Drawing.Size(696, 419);
-            this.pnControls.TabIndex = 25;
+            this.pnControls.Size = new System.Drawing.Size(565, 337);
+            this.pnControls.TabIndex = 32;
             this.pnControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnControls_MouseDown);
             this.pnControls.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnControls_MouseMove);
+            // 
+            // tlsRectangle
+            // 
+            this.tlsRectangle.Image = ((System.Drawing.Image)(resources.GetObject("tlsRectangle.Image")));
+            this.tlsRectangle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsRectangle.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tlsRectangle.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsRectangle.Name = "tlsRectangle";
+            this.tlsRectangle.Size = new System.Drawing.Size(78, 20);
+            this.tlsRectangle.Text = "Rectangle";
+            this.tlsRectangle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsRectangle.Click += new System.EventHandler(this.tlsRectangle_Click);
             // 
             // VisualEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.propertyGrid1);
+            this.ClientSize = new System.Drawing.Size(810, 368);
             this.Controls.Add(this.pnControls);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.toolStripContainer1);
+            this.Controls.Add(this.propertyGrid1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "VisualEditor";
             this.Text = "Visual Editor";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.VisualEditor_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.contextMenuStrip2.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.toolStripContainer1.LeftToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer1.LeftToolStripPanel.PerformLayout();
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolButton;
-        private System.Windows.Forms.ToolStripButton toolLabel;
-        private System.Windows.Forms.ToolStripButton toolCheckbox;
-        private System.Windows.Forms.ToolStripButton toolAutocomplete;
-        private System.Windows.Forms.ToolStripButton toolTextBox;
-        private System.Windows.Forms.ToolStripButton toolRadioButton;
-        private System.Windows.Forms.ToolStripButton toolDatePicker;
         private System.Windows.Forms.PropertyGrid propertyGrid1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripButton toolImage;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ctxCopy;
         private System.Windows.Forms.ToolStripMenuItem ctxCut;
@@ -395,7 +452,20 @@ namespace MySCADA
         private System.Windows.Forms.ToolStrip menuStrip1;
         private System.Windows.Forms.ToolStripButton tlsSaveChanges;
         private System.Windows.Forms.ToolStripButton tlsViewCode;
-        private System.Windows.Forms.Panel pnControls;
         private System.Windows.Forms.ToolStripButton tlsRun;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolButton;
+        private System.Windows.Forms.ToolStripButton toolLabel;
+        private System.Windows.Forms.ToolStripButton toolCheckbox;
+        private System.Windows.Forms.ToolStripButton toolAutocomplete;
+        private System.Windows.Forms.ToolStripButton toolTextBox;
+        private System.Windows.Forms.ToolStripButton toolRadioButton;
+        private System.Windows.Forms.ToolStripButton toolDatePicker;
+        private System.Windows.Forms.ToolStripButton toolImage;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripButton tlsCircle;
+        private System.Windows.Forms.Panel pnControls;
+        private System.Windows.Forms.ToolStripButton tlsRectangle;
     }
 }
