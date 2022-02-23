@@ -29,11 +29,11 @@ namespace MySCADA
         Size newSize;
         string[] gParam = null;
         Bitmap MemoryImage;
-        String xmlFileName = "";
-        String xmlFileName_Query = "";
         bool cutCheck = false;
         bool copyCheck = false;
         private ToolTip tt;
+        int x;
+        int y;
 
         UserForm form;
 
@@ -46,7 +46,7 @@ namespace MySCADA
         static private IntPtr m_fh = IntPtr.Zero;
         static private PrivateFontCollection m_pfc = null;
         string[] gParamPop = null;
-        List<String> ControlNames = new List<String>();
+        List<string> ControlNames = new();
         enum Direction
         {
             NW,
@@ -70,7 +70,7 @@ namespace MySCADA
             if (parts.Length != 3)
                 throw new ArgumentException("Not a valid font string", "font");
 
-            Font loadedFont = new Font(parts[0], float.Parse(parts[1]), (FontStyle)int.Parse(parts[2]));
+            Font loadedFont = new(parts[0], float.Parse(parts[1]), (FontStyle)int.Parse(parts[2]));
             return loadedFont;
         }
 
@@ -131,7 +131,7 @@ namespace MySCADA
             if (e.Button == MouseButtons.Left)
             {
                 Control control = (Control)sender;
-                Point nextPosition = new Point();
+                Point nextPosition = new();
                 nextPosition = pnControls.PointToClient(MousePosition);
                 nextPosition.Offset(mouseX, mouseY);
                 control.Location = nextPosition;
@@ -152,40 +152,40 @@ namespace MySCADA
         {
             Control control = (Control)sender;
 
-            Rectangle Border = new Rectangle(
+            Rectangle Border = new(
                 new Point(control.Location.X - DRAG_HANDLE_SIZE / 2,
                     control.Location.Y - DRAG_HANDLE_SIZE / 2),
                 new Size(control.Size.Width + DRAG_HANDLE_SIZE,
                     control.Size.Height + DRAG_HANDLE_SIZE));
-            Rectangle NW = new Rectangle(
+            Rectangle NW = new(
                 new Point(control.Location.X - DRAG_HANDLE_SIZE,
                     control.Location.Y - DRAG_HANDLE_SIZE),
                 new Size(DRAG_HANDLE_SIZE, DRAG_HANDLE_SIZE));
-            Rectangle N = new Rectangle(
+            Rectangle N = new(
                 new Point(control.Location.X + control.Width / 2 - DRAG_HANDLE_SIZE / 2,
                     control.Location.Y - DRAG_HANDLE_SIZE),
                 new Size(DRAG_HANDLE_SIZE, DRAG_HANDLE_SIZE));
-            Rectangle NE = new Rectangle(
+            Rectangle NE = new(
                 new Point(control.Location.X + control.Width,
                     control.Location.Y - DRAG_HANDLE_SIZE),
                 new Size(DRAG_HANDLE_SIZE, DRAG_HANDLE_SIZE));
-            Rectangle W = new Rectangle(
+            Rectangle W = new(
                 new Point(control.Location.X - DRAG_HANDLE_SIZE,
                     control.Location.Y + control.Height / 2 - DRAG_HANDLE_SIZE / 2),
                 new Size(DRAG_HANDLE_SIZE, DRAG_HANDLE_SIZE));
-            Rectangle E = new Rectangle(
+            Rectangle E = new(
                 new Point(control.Location.X + control.Width,
                     control.Location.Y + control.Height / 2 - DRAG_HANDLE_SIZE / 2),
                 new Size(DRAG_HANDLE_SIZE, DRAG_HANDLE_SIZE));
-            Rectangle SW = new Rectangle(
+            Rectangle SW = new(
                 new Point(control.Location.X - DRAG_HANDLE_SIZE,
                     control.Location.Y + control.Height),
                 new Size(DRAG_HANDLE_SIZE, DRAG_HANDLE_SIZE));
-            Rectangle S = new Rectangle(
+            Rectangle S = new(
                 new Point(control.Location.X + control.Width / 2 - DRAG_HANDLE_SIZE / 2,
                     control.Location.Y + control.Height),
                 new Size(DRAG_HANDLE_SIZE, DRAG_HANDLE_SIZE));
-            Rectangle SE = new Rectangle(
+            Rectangle SE = new(
                 new Point(control.Location.X + control.Width,
                     control.Location.Y + control.Height),
                 new Size(DRAG_HANDLE_SIZE, DRAG_HANDLE_SIZE));
@@ -201,13 +201,6 @@ namespace MySCADA
             ControlPaint.DrawGrabHandle(g, S, true, true);
             ControlPaint.DrawGrabHandle(g, SE, true, true);
             g.Dispose();
-        }
-        public void GetPrintArea(Panel pnl)
-        {
-            MemoryImage = new Bitmap(pnl.Width, pnl.Height);
-            Rectangle rect = new Rectangle(0, 0, pnl.Width, pnl.Height);
-            pnl.DrawToBitmap(MemoryImage, new Rectangle(0, 0, pnl.Width, pnl.Height));
-            pnl.Invalidate();
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -352,6 +345,8 @@ namespace MySCADA
                             catch (Exception) { }
                         }
                     }
+                    if(ctrl.Name== "MainPanel")
+                        ctrl.BackColor = SystemColors.InactiveCaption;
                     pnControls.Controls.Add(ctrl);
                 }
             }
@@ -385,7 +380,7 @@ namespace MySCADA
 
             string loc = $"{ScadaProject.ActiveProject.Location}\\UserForms";
 
-            FileInfo info = new FileInfo($"{loc}\\{form.DesignerFile}");
+            FileInfo info = new($"{loc}\\{form.DesignerFile}");
             info.Directory.Create();
 
             File.WriteAllText($"{loc}\\{form.DesignerFile}", str);
@@ -401,11 +396,11 @@ namespace MySCADA
 
         private void toolButton_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
+            Random rnd = new();
             int randNumber = rnd.Next(1, 1000);
-            String btnName = "btn_" + randNumber;
+            string btnName = "btn_" + randNumber;
 
-            Button ctrl = new Button();
+            Button ctrl = new();
             ctrl.Location = new Point(50, 150);
             ctrl.Name = btnName;
             ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -422,10 +417,10 @@ namespace MySCADA
 
         private void toolLabel_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
+            Random rnd = new();
             int randNumber = rnd.Next(1, 1000);
-            String LableName = "Lbl_" + randNumber;
-            Label ctrl = new Label();
+            string LableName = "Lbl_" + randNumber;
+            Label ctrl = new();
             ctrl.Location = new Point(30, 130);
             ctrl.Name = LableName;
             ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -441,11 +436,11 @@ namespace MySCADA
 
         private void toolCheckbox_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
+            Random rnd = new();
             int randNumber = rnd.Next(1, 1000);
-            String chkName = "chk_" + randNumber;
+            string chkName = "chk_" + randNumber;
 
-            CheckBox ctrl = new CheckBox();
+            CheckBox ctrl = new();
             ctrl.Location = new Point(120, 140);
             ctrl.Name = chkName;
             ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -462,11 +457,11 @@ namespace MySCADA
 
         private void toolAutocomplete_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
+            Random rnd = new();
             int randNumber = rnd.Next(1, 1000);
-            String ComboName = "cbo_" + randNumber;
+            string ComboName = "cbo_" + randNumber;
 
-            ComboBox ctrl = new ComboBox();
+            ComboBox ctrl = new();
             ctrl.Location = new Point(160, 180);
             ctrl.Name = ComboName;
             ctrl.BringToFront();
@@ -485,11 +480,11 @@ namespace MySCADA
 
         private void toolTextBox_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
+            Random rnd = new();
             int randNumber = rnd.Next(1, 1000);
-            String textName = "txt_" + randNumber;
+            string textName = "txt_" + randNumber;
 
-            TextBox ctrl = new TextBox();
+            TextBox ctrl = new();
             ctrl.Location = new Point(20, 190);
             ctrl.Name = textName;
             ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -505,11 +500,11 @@ namespace MySCADA
 
         private void toolRadioButton_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
+            Random rnd = new();
             int randNumber = rnd.Next(1, 1000);
-            String radioName = "rdo_" + randNumber;
+            string radioName = "rdo_" + randNumber;
 
-            RadioButton ctrl = new RadioButton();
+            RadioButton ctrl = new();
             ctrl.Location = new Point(200, 260);
             ctrl.Name = radioName;
             ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -524,11 +519,11 @@ namespace MySCADA
 
         private void toolDatePicker_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
+            Random rnd = new();
             int randNumber = rnd.Next(1, 1000);
-            String DatetimeName = "dte_" + randNumber;
+            string DatetimeName = "dte_" + randNumber;
 
-            DateTimePicker ctrl = new DateTimePicker();
+            DateTimePicker ctrl = new();
             ctrl.Location = new Point(70, 130);
             ctrl.Name = DatetimeName;
             ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -652,9 +647,9 @@ namespace MySCADA
             try
             {
 
-                Random rnd = new Random();
+                Random rnd = new();
                 int randNumber = rnd.Next(1, 1000);
-                String newControlsName = copiedControl.Name + "_" + randNumber;
+                string newControlsName = copiedControl.Name + "_" + randNumber;
 
                 switch (copiedControl.GetType().ToString())
                 {
@@ -662,7 +657,7 @@ namespace MySCADA
                         try
                         {
                             PictureBox pic = copiedControl as PictureBox;
-                            PictureBox ctrl = new PictureBox();
+                            PictureBox ctrl = new();
                             ctrl.Name = newControlsName;
                             ctrl.SendToBack();
                             ctrl.BackColor = copiedControl.BackColor;
@@ -678,7 +673,7 @@ namespace MySCADA
                         break;
                     case "System.Windows.Forms.DataGridView":
                         {
-                            DataGridView ctrl = new DataGridView();
+                            DataGridView ctrl = new();
                             ctrl.Name = newControlsName;
                             SetControlDefaults(ctrl);
                             pnControls.Controls.Add(ctrl);
@@ -686,7 +681,7 @@ namespace MySCADA
                         break;
                     case "System.Windows.Forms.Label":
                         {
-                            Label ctrl = new Label();
+                            Label ctrl = new();
                             ctrl.Name = newControlsName;
                             SetControlDefaults(ctrl);
                             pnControls.Controls.Add(ctrl);
@@ -694,9 +689,9 @@ namespace MySCADA
                         break;
                     case "System.Windows.Forms.Button":
                         {
-                            System.Drawing.Color myBackColor = new System.Drawing.Color();
+                            System.Drawing.Color myBackColor = new();
                             myBackColor = System.Drawing.ColorTranslator.FromHtml(gParam[8]);
-                            Button ctrl = new Button();
+                            Button ctrl = new();
                             ctrl.Name = newControlsName;
                             SetControlDefaults(ctrl);
                             pnControls.Controls.Add(ctrl);
@@ -704,7 +699,7 @@ namespace MySCADA
                         break;
                     case "System.Windows.Forms.ComboBox":
                         {
-                            ComboBox ctrl = new ComboBox();
+                            ComboBox ctrl = new();
                             ctrl.Name = newControlsName;
                             SetControlDefaults(ctrl);
                             pnControls.Controls.Add(ctrl);
@@ -712,7 +707,7 @@ namespace MySCADA
                         break;
                     case "System.Windows.Forms.ListBox":
                         {
-                            ListBox ctrl = new ListBox();
+                            ListBox ctrl = new();
                             ctrl.Name = newControlsName;
                             SetControlDefaults(ctrl);
                             pnControls.Controls.Add(ctrl);
@@ -720,7 +715,7 @@ namespace MySCADA
                         break;
                     case "System.Windows.Forms.Panel":
                         {
-                            Panel ctrl = new Panel();
+                            Panel ctrl = new();
                             ctrl.Name = newControlsName;
                             SetControlDefaults(ctrl);
                             ctrl.SendToBack();
@@ -729,7 +724,7 @@ namespace MySCADA
                         break;
                     case "System.Windows.Forms.NumericUpDown":
                         {
-                            NumericUpDown ctrl = new NumericUpDown();
+                            NumericUpDown ctrl = new();
                             ctrl.Name = newControlsName;
                             SetControlDefaults(ctrl);
                             pnControls.Controls.Add(ctrl);
@@ -737,7 +732,7 @@ namespace MySCADA
                         break;
                     case "System.Windows.Forms.TreeView":
                         {
-                            TreeView ctrl = new TreeView();
+                            TreeView ctrl = new();
                             ctrl.Name = newControlsName;
                             SetControlDefaults(ctrl);
                             pnControls.Controls.Add(ctrl);
@@ -745,7 +740,7 @@ namespace MySCADA
                         break;
                     case "System.Windows.Forms.DateTimePicker":
                         {
-                            DateTimePicker ctrl = new DateTimePicker();
+                            DateTimePicker ctrl = new();
                             ctrl.Name = newControlsName;
                             SetControlDefaults(ctrl);
                             pnControls.Controls.Add(ctrl);
@@ -753,7 +748,7 @@ namespace MySCADA
                         break;
                     case "System.Windows.Forms.TextBox":
                         {
-                            TextBox ctrl = new TextBox();
+                            TextBox ctrl = new();
                             ctrl.Name = newControlsName;
                             SetControlDefaults(ctrl);
                             pnControls.Controls.Add(ctrl);
@@ -761,7 +756,7 @@ namespace MySCADA
                         break;
                     case "System.Windows.Forms.RadioButton":
                         {
-                            RadioButton ctrl = new RadioButton();
+                            RadioButton ctrl = new();
                             ctrl.Name = newControlsName;
                             SetControlDefaults(ctrl);
                             pnControls.Controls.Add(ctrl);
@@ -769,7 +764,7 @@ namespace MySCADA
                         break;
                     case "System.Windows.Forms.CheckBox":
                         {
-                            CheckBox ctrl = new CheckBox();
+                            CheckBox ctrl = new();
                             ctrl.Name = newControlsName;
                             SetControlDefaults(ctrl);
                             pnControls.Controls.Add(ctrl);
@@ -895,120 +890,70 @@ namespace MySCADA
 
         private void tlsRun_Click(object sender, EventArgs e)
         {
-            Form frm = new Form();
-            frm.Text = form.FormName;
-            foreach (var c in pnControls.Controls)
-            {
-                dynamic cd = c;
-                if (cd.Name == "MainPanel")
-                {
-                    var panel = ((Panel)c).Clone();
-                    frm.Size = panel.Size;
-                    frm.BackColor = panel.BackColor;
-                    break;
-                }
-            }
-            foreach (var ctrl in pnControls.Controls)
-            {
-                var b = new Button();
-                //var ctrl = ComponentCopy.Clone(c);
-                dynamic sc = ctrl;
-                if(sc.Name!= "MainPanel")
-                {
-                    var tp = ctrl.GetType();
-                    switch (tp.Name)
-                    {
-                        case nameof(Button):
-                            frm.Controls.Add(((Button)ctrl).Clone());
-                            break;
-                        case nameof(ComboBox):
-                            frm.Controls.Add(((ComboBox)ctrl).Clone());
-                            break;
-                        case nameof(Label):
-                            frm.Controls.Add(((Label)ctrl).Clone());
-                            break;
-                        case nameof(TextBox):
-                            frm.Controls.Add(((TextBox)ctrl).Clone());
-                            break;
-                        case nameof(RadioButton):
-                            frm.Controls.Add(((RadioButton)ctrl).Clone());
-                            break;
-                        case nameof(DateTimePicker):
-                            frm.Controls.Add(((DateTimePicker)ctrl).Clone());
-                            break;
-                        case nameof(CheckBox):
-                            frm.Controls.Add(((CheckBox)ctrl).Clone());
-                            break;
-                        case nameof(PictureBox):
-                            frm.Controls.Add(((PictureBox)ctrl).Clone());
-                            break;
-                    }
-                    //if (panel != null)
-                    //{
-                    //    switch (tp.Name)
-                    //    {
-                    //        case nameof(Button):
-                    //            panel.Controls.Add((Button)ctrl);
-                    //            break;
-                    //        case nameof(ComboBox):
-                    //            panel.Controls.Add((ComboBox)ctrl);
-                    //            break;
-                    //        case nameof(Label):
-                    //            panel.Controls.Add((Label)ctrl);
-                    //            break;
-                    //        case nameof(TextBox):
-                    //            panel.Controls.Add((TextBox)ctrl);
-                    //            break;
-                    //        case nameof(RadioButton):
-                    //            panel.Controls.Add((RadioButton)ctrl);
-                    //            break;
-                    //        case nameof(DateTimePicker):
-                    //            panel.Controls.Add((DateTimePicker)ctrl);
-                    //            break;
-                    //        case nameof(CheckBox):
-                    //            panel.Controls.Add((CheckBox)ctrl);
-                    //            break;
-                    //        case nameof(PictureBox):
-                    //            panel.Controls.Add((PictureBox)ctrl);
-                    //            break;
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    switch (tp.Name)
-                    //    {
-                    //        case nameof(Button):
-                    //            frm.Controls.Add((Button)ctrl);
-                    //            break;
-                    //        case nameof(ComboBox):
-                    //            frm.Controls.Add((ComboBox)ctrl);
-                    //            break;
-                    //        case nameof(Label):
-                    //            frm.Controls.Add((Label)ctrl);
-                    //            break;
-                    //        case nameof(TextBox):
-                    //            frm.Controls.Add((TextBox)ctrl);
-                    //            break;
-                    //        case nameof(RadioButton):
-                    //            frm.Controls.Add((RadioButton)ctrl);
-                    //            break;
-                    //        case nameof(DateTimePicker):
-                    //            frm.Controls.Add((DateTimePicker)ctrl);
-                    //            break;
-                    //        case nameof(CheckBox):
-                    //            frm.Controls.Add((CheckBox)ctrl);
-                    //            break;
-                    //        case nameof(PictureBox):
-                    //            frm.Controls.Add((PictureBox)ctrl);
-                    //            break;
-                    //    }
-                    //}
-                }
-            }
+            var generator = new FormGenerator();
+            Form frm = generator.CreateFromPanel(pnControls, form.FormName);
             frm.Show();
         }
 
-        
+        private void toolImage_Click(object sender, EventArgs e)
+        {
+            Random rnd = new();
+            int randNumber = rnd.Next(1, 1000);
+            string textName = "img_" + randNumber;
+
+            PictureBox ctrl = new();
+            ctrl.Location = new Point(20, 190);
+            ctrl.Name = textName;
+            ctrl.BackColor = SystemColors.InactiveBorder;
+            ctrl.MouseEnter += new EventHandler(control_MouseEnter);
+            ctrl.MouseLeave += new EventHandler(control_MouseLeave);
+            ctrl.MouseDown += new MouseEventHandler(control_MouseDown);
+            ctrl.MouseMove += new MouseEventHandler(control_MouseMove);
+            ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
+            pnControls.Controls.Add(ctrl);
+        }
+
+        private void tlsCircle_Click(object sender, EventArgs e)
+        {
+            Random rnd = new();
+            int randNumber = rnd.Next(1, 1000);
+            string textName = "img_" + randNumber;
+
+            ScCanvas ctrl = new();
+            ctrl.Location = new Point(20, 190);
+            ctrl.Name = textName;
+            ctrl.BackColor = SystemColors.InactiveBorder;
+            ctrl.MouseEnter += new EventHandler(control_MouseEnter);
+            ctrl.MouseLeave += new EventHandler(control_MouseLeave);
+            ctrl.MouseDown += new MouseEventHandler(control_MouseDown);
+            ctrl.MouseMove += new MouseEventHandler(control_MouseMove);
+            ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
+
+            var circle = new ScCircle(Point.Empty);
+            ctrl.Shapes.Add(circle);
+            pnControls.Controls.Add(ctrl);
+        }
+
+        private void tlsRectangle_Click(object sender, EventArgs e)
+        {
+            Random rnd = new();
+            int randNumber = rnd.Next(1, 1000);
+            string textName = "img_" + randNumber;
+
+            ScCanvas ctrl = new();
+            ctrl.Location = new Point(20, 190);
+            ctrl.Name = textName;
+            ctrl.BackColor = SystemColors.InactiveBorder;
+            ctrl.MouseEnter += new EventHandler(control_MouseEnter);
+            ctrl.MouseLeave += new EventHandler(control_MouseLeave);
+            ctrl.MouseDown += new MouseEventHandler(control_MouseDown);
+            ctrl.MouseMove += new MouseEventHandler(control_MouseMove);
+            ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
+
+            var circle = new ScRectangle(Point.Empty);
+            ctrl.Shapes.Add(circle);
+            pnControls.Controls.Add(ctrl);
+        }
 
         private void pnControls_MouseMove(object sender, MouseEventArgs e)
         {

@@ -49,5 +49,22 @@ namespace MySCADA
                 return obj;
             }
         }
+
+        public static int ToInt(this object o)
+        {
+            try
+            {
+                return Convert.ToInt32(o);
+            }
+            catch (Exception) { return 0; }
+        }
+        public static float ToFloat(this object o)
+        {
+            try
+            {
+                return Convert.ToSByte(o);
+            }
+            catch (Exception) { return 0; }
+        }
     }
 }

@@ -42,7 +42,12 @@ namespace MySCADA
                 MessageBox.Show("File name must begin with letter", "File name");
                 return;
             }
-
+            var existing = ScadaProject.ActiveProject.UserForms.Any(x => x.FormName == txtFormName.Text);
+            if (existing)
+            {
+                MessageBox.Show("A form with that name already exists", "File name");
+                return;
+            }
             var frm = new UserForm()
             {
                 FormName = txtFormName.Text,
@@ -51,9 +56,7 @@ namespace MySCADA
             };
             CreatePhysicalFile(frm);
             ScadaProject.ActiveProject.UserForms.Add(frm);
-            var text = ScadaProject.ToFileFormat(ScadaProject.ActiveProject);
-            File.WriteAllText($"{ScadaProject.ActiveProject.Location}\\{ScadaProject.ActiveProject.Name}.scdproj", text);
-            ScadaProject.ActiveProject.RaiseEvent();
+            ScadaProject.ActiveProject.SaveChanges();
             var editor = new VisualEditor(frm);
             editor.Show();
             Close();
