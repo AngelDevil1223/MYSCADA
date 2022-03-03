@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="CodeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Controls\ScArc.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\ScCircle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\ScLine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\ScPolygon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\ScRectangle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="CreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Drawing\ScCanvas.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ToolBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VisualEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
