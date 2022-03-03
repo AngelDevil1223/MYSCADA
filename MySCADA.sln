@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySCADA", "MySCADA\MySCADA.csproj", "{0FF452A1-741D-44A1-991E-E0AC31901247}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FF452A1-741D-44A1-991E-E0AC31901247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FF452A1-741D-44A1-991E-E0AC31901247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FF452A1-741D-44A1-991E-E0AC31901247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FF452A1-741D-44A1-991E-E0AC31901247}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE122008-CE5A-4AF4-9A5C-60B09A97940A}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://kilonzo.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = MySCADA\\MySCADA.csproj
+		SccProjectName1 = MySCADA
+		SccLocalPath1 = MySCADA
+	EndGlobalSection
+EndGlobal
