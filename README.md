@@ -1,2 +1,2 @@
 # MYSCADA
-Windows Form Editor
+Windows Form Editor made by C# and DotNet
