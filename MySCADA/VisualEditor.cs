@@ -24,6 +24,7 @@ namespace MySCADA
         const int DRAG_HANDLE_SIZE = 7;
         int mouseX, mouseY;
         Control SelectedControl;
+        List<Control> SelectedControls = new();
         Control copiedControl;
         Direction direction;
         Point newLocation;
@@ -117,8 +118,14 @@ namespace MySCADA
         {
             if (e.Button == MouseButtons.Left)
             {
+                var ctrl = (Control)sender;
+
                 pnControls.Invalidate();
                 SelectedControl = (Control)sender;
+                if (SelectedControls.Contains(ctrl))
+                    SelectedControls.Remove(ctrl);
+                else
+                    SelectedControls.Add((Control)sender);
                 Control control = (Control)sender;
                 mouseX = -e.X;
                 mouseY = -e.Y;
@@ -208,7 +215,6 @@ namespace MySCADA
             if (SelectedControl != null)
             {
                 Point pos = pnControls.PointToClient(MousePosition);
-                //check if the mouse cursor is within the drag handle
                 if ((pos.X >= SelectedControl.Location.X - DRAG_HANDLE_SIZE &&
                     pos.X <= SelectedControl.Location.X) &&
                     (pos.Y >= SelectedControl.Location.Y - DRAG_HANDLE_SIZE &&
@@ -392,6 +398,10 @@ namespace MySCADA
         {
             if (SelectedControl != null)
                 DrawControlBorder(SelectedControl);
+            foreach(var c in SelectedControls)
+            {
+                DrawControlBorder(c);
+            }
             timer1.Start();
         }
 
@@ -445,7 +455,6 @@ namespace MySCADA
             ctrl.Location = new Point(120, 140);
             ctrl.Name = chkName;
             ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            ctrl.Text = "YourCheckBox";
             ctrl.BringToFront();
             ctrl.MouseEnter += new EventHandler(control_MouseEnter);
             ctrl.MouseLeave += new EventHandler(control_MouseLeave);
@@ -940,28 +949,6 @@ namespace MySCADA
             pnControls.Controls.Add(ctrl);
             ctrl.BringToFront();
         }
-        private void AddShape(ScShape shape)
-        {
-            ScCanvas sc = null;
-            foreach (dynamic ctrl in pnControls.Controls)
-            {
-                if (ctrl.Name == "MainPanel")
-                {
-                    sc = (ScCanvas)ctrl;
-                }
-            }
-            if (sc != null)
-            {
-                sc.Shapes.Add(shape);
-            }
-            else
-            {
-                pnControls.Shapes.Add(shape);
-            }
-            SelectedControl = null;
-            pnControls.Invalidate();
-        }
-
         private void tlsRectangle_Click(object sender, EventArgs e)
         {
             Random rnd = new();
@@ -1009,7 +996,7 @@ namespace MySCADA
             int randNumber = rnd.Next(1, 1000);
             string btnName = "ln_" + randNumber;
 
-            Controls.ScLine ctrl = new();
+            ScLine ctrl = new();
             ctrl.Location = new Point(50, 150);
             ctrl.Name = btnName;
             ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1041,6 +1028,134 @@ namespace MySCADA
             ctrl.Click += new EventHandler(control_Click);
             pnControls.Controls.Add(ctrl);
             ctrl.BringToFront();
+        }
+
+        private void tlsConnector_Click(object sender, EventArgs e)
+        {
+            Random rnd = new();
+            int randNumber = rnd.Next(1, 1000);
+            string btnName = "sconn_" + randNumber;
+
+            ScLine ctrl = new();
+            ctrl.Location = new Point(50, 150);
+            ctrl.Name = btnName;
+            ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ctrl.MouseEnter += new EventHandler(control_MouseEnter);
+            ctrl.MouseLeave += new EventHandler(control_MouseLeave);
+            ctrl.MouseDown += new MouseEventHandler(control_MouseDown);
+            ctrl.MouseMove += new MouseEventHandler(control_MouseMove);
+            ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
+            ctrl.Click += new EventHandler(control_Click);
+            pnControls.Controls.Add(ctrl);
+            ctrl.BringToFront();
+        }
+
+        private void tlsEllipseSegment_Click(object sender, EventArgs e)
+        {
+            Random rnd = new();
+            int randNumber = rnd.Next(1, 1000);
+            string btnName = "arc_" + randNumber;
+
+            ScArc ctrl = new();
+            ctrl.Location = new Point(50, 150);
+            ctrl.Name = btnName;
+            ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ctrl.MouseEnter += new EventHandler(control_MouseEnter);
+            ctrl.MouseLeave += new EventHandler(control_MouseLeave);
+            ctrl.MouseDown += new MouseEventHandler(control_MouseDown);
+            ctrl.MouseMove += new MouseEventHandler(control_MouseMove);
+            ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
+            ctrl.Click += new EventHandler(control_Click);
+            pnControls.Controls.Add(ctrl);
+            ctrl.BringToFront();
+            pnControls.Invalidate();
+        }
+
+        private void tlsPieSegment_Click(object sender, EventArgs e)
+        {
+            Random rnd = new();
+            int randNumber = rnd.Next(1, 1000);
+            string btnName = "arc_" + randNumber;
+
+            ScArc ctrl = new();
+            ctrl.Location = new Point(50, 150);
+            ctrl.Name = btnName;
+            ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ctrl.MouseEnter += new EventHandler(control_MouseEnter);
+            ctrl.MouseLeave += new EventHandler(control_MouseLeave);
+            ctrl.MouseDown += new MouseEventHandler(control_MouseDown);
+            ctrl.MouseMove += new MouseEventHandler(control_MouseMove);
+            ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
+            ctrl.Click += new EventHandler(control_Click);
+            pnControls.Controls.Add(ctrl);
+            ctrl.BringToFront();
+            pnControls.Invalidate();
+        }
+
+        private void toolListBox_Click(object sender, EventArgs e)
+        {
+            Random rnd = new();
+            int randNumber = rnd.Next(1, 1000);
+            string chkName = "lst_" + randNumber;
+
+            ListBox ctrl = new();
+            ctrl.Location = new Point(120, 140);
+            ctrl.Name = chkName;
+            ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ctrl.BringToFront();
+            ctrl.MouseEnter += new EventHandler(control_MouseEnter);
+            ctrl.MouseLeave += new EventHandler(control_MouseLeave);
+            ctrl.MouseDown += new MouseEventHandler(control_MouseDown);
+            ctrl.MouseMove += new MouseEventHandler(control_MouseMove);
+            ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
+
+            pnControls.Controls.Add(ctrl);
+        }
+
+        private void toolTab_Click(object sender, EventArgs e)
+        {
+            Random rnd = new();
+            int randNumber = rnd.Next(1, 1000);
+            string chkName = "tab_" + randNumber;
+
+            TabControl ctrl = new();
+            var page = new TabPage()
+            {
+                Name = "Tab1",
+                Text = "Tab1"
+            };
+            ctrl.TabPages.Add(page);
+            ctrl.Location = new Point(120, 140);
+            ctrl.Name = chkName;
+            ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ctrl.MouseEnter += new EventHandler(control_MouseEnter);
+            ctrl.MouseLeave += new EventHandler(control_MouseLeave);
+            ctrl.MouseDown += new MouseEventHandler(control_MouseDown);
+            ctrl.MouseMove += new MouseEventHandler(control_MouseMove);
+            ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
+
+            pnControls.Controls.Add(ctrl);
+            ctrl.BringToFront();
+        }
+
+        private void toolComboBox_Click(object sender, EventArgs e)
+        {
+            Random rnd = new();
+            int randNumber = rnd.Next(1, 1000);
+            string chkName = "cmb_" + randNumber;
+
+            ComboBox ctrl = new();
+            ctrl.Location = new Point(120, 140);
+            ctrl.Name = chkName;
+            ctrl.Font = new System.Drawing.Font("NativePrinterFontA", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            ctrl.BringToFront();
+            ctrl.MouseEnter += new EventHandler(control_MouseEnter);
+            ctrl.MouseLeave += new EventHandler(control_MouseLeave);
+            ctrl.MouseDown += new MouseEventHandler(control_MouseDown);
+            ctrl.MouseMove += new MouseEventHandler(control_MouseMove);
+            ctrl.MouseUp += new MouseEventHandler(control_MouseUp);
+
+            pnControls.Controls.Add(ctrl);
         }
 
         private void pnControls_MouseMove(object sender, MouseEventArgs e)

@@ -77,6 +77,15 @@ namespace MySCADA
                         case nameof(PictureBox):
                             frm.Controls.Add(((PictureBox)ctrl).Clone());
                             break;
+                        case nameof(ListBox):
+                            frm.Controls.Add(((ListBox)ctrl).Clone());
+                            break;
+                        case nameof(TabControl):
+                            frm.Controls.Add(((TabControl)ctrl).Clone());
+                            break;
+                        case nameof(TabPage):
+                            frm.Controls.Add(((TabPage)ctrl).Clone());
+                            break;
                     }
                 }
             }
