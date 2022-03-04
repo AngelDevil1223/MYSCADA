@@ -57,6 +57,9 @@ namespace MySCADA
             this.toolRadioButton = new System.Windows.Forms.ToolStripButton();
             this.toolDatePicker = new System.Windows.Forms.ToolStripButton();
             this.toolImage = new System.Windows.Forms.ToolStripButton();
+            this.toolListBox = new System.Windows.Forms.ToolStripButton();
+            this.toolTab = new System.Windows.Forms.ToolStripButton();
+            this.toolComboBox = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.tlsCircle = new System.Windows.Forms.ToolStripButton();
@@ -112,7 +115,7 @@ namespace MySCADA
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Right;
             this.propertyGrid1.Location = new System.Drawing.Point(669, 31);
             this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(141, 337);
+            this.propertyGrid1.Size = new System.Drawing.Size(141, 561);
             this.propertyGrid1.TabIndex = 26;
             // 
             // timer1
@@ -248,10 +251,13 @@ namespace MySCADA
             this.toolTextBox,
             this.toolRadioButton,
             this.toolDatePicker,
-            this.toolImage});
+            this.toolImage,
+            this.toolListBox,
+            this.toolTab,
+            this.toolComboBox});
             this.toolStrip1.Location = new System.Drawing.Point(0, 198);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(104, 114);
+            this.toolStrip1.Size = new System.Drawing.Size(104, 241);
             this.toolStrip1.TabIndex = 30;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -298,7 +304,7 @@ namespace MySCADA
             this.toolAutocomplete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolAutocomplete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolAutocomplete.Name = "toolAutocomplete";
-            this.toolAutocomplete.Size = new System.Drawing.Size(103, 20);
+            this.toolAutocomplete.Size = new System.Drawing.Size(102, 20);
             this.toolAutocomplete.Text = "Autocomplete";
             this.toolAutocomplete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolAutocomplete.Click += new System.EventHandler(this.toolAutocomplete_Click);
@@ -310,7 +316,7 @@ namespace MySCADA
             this.toolTextBox.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolTextBox.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolTextBox.Name = "toolTextBox";
-            this.toolTextBox.Size = new System.Drawing.Size(68, 20);
+            this.toolTextBox.Size = new System.Drawing.Size(102, 20);
             this.toolTextBox.Text = "Textbox";
             this.toolTextBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolTextBox.Click += new System.EventHandler(this.toolTextBox_Click);
@@ -322,7 +328,7 @@ namespace MySCADA
             this.toolRadioButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolRadioButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolRadioButton.Name = "toolRadioButton";
-            this.toolRadioButton.Size = new System.Drawing.Size(93, 20);
+            this.toolRadioButton.Size = new System.Drawing.Size(102, 20);
             this.toolRadioButton.Text = "Radiobutton";
             this.toolRadioButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolRadioButton.Click += new System.EventHandler(this.toolRadioButton_Click);
@@ -334,7 +340,7 @@ namespace MySCADA
             this.toolDatePicker.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolDatePicker.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolDatePicker.Name = "toolDatePicker";
-            this.toolDatePicker.Size = new System.Drawing.Size(86, 20);
+            this.toolDatePicker.Size = new System.Drawing.Size(102, 20);
             this.toolDatePicker.Text = "Date picker";
             this.toolDatePicker.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolDatePicker.Click += new System.EventHandler(this.toolDatePicker_Click);
@@ -346,17 +352,54 @@ namespace MySCADA
             this.toolImage.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolImage.Name = "toolImage";
-            this.toolImage.Size = new System.Drawing.Size(60, 20);
+            this.toolImage.Size = new System.Drawing.Size(102, 20);
             this.toolImage.Text = "Image";
             this.toolImage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolImage.Click += new System.EventHandler(this.toolImage_Click);
+            // 
+            // toolListBox
+            // 
+            this.toolListBox.Image = ((System.Drawing.Image)(resources.GetObject("toolListBox.Image")));
+            this.toolListBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolListBox.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolListBox.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolListBox.Name = "toolListBox";
+            this.toolListBox.Size = new System.Drawing.Size(102, 20);
+            this.toolListBox.Text = "List box";
+            this.toolListBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolListBox.Click += new System.EventHandler(this.toolListBox_Click);
+            // 
+            // toolTab
+            // 
+            this.toolTab.Image = ((System.Drawing.Image)(resources.GetObject("toolTab.Image")));
+            this.toolTab.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTab.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolTab.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolTab.Name = "toolTab";
+            this.toolTab.Size = new System.Drawing.Size(102, 20);
+            this.toolTab.Text = "Tab control";
+            this.toolTab.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTab.Visible = false;
+            this.toolTab.Click += new System.EventHandler(this.toolTab_Click);
+            // 
+            // toolComboBox
+            // 
+            this.toolComboBox.Image = ((System.Drawing.Image)(resources.GetObject("toolComboBox.Image")));
+            this.toolComboBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolComboBox.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolComboBox.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolComboBox.Name = "toolComboBox";
+            this.toolComboBox.Size = new System.Drawing.Size(102, 20);
+            this.toolComboBox.Text = "Combo box";
+            this.toolComboBox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolComboBox.Click += new System.EventHandler(this.toolComboBox_Click);
             // 
             // toolStripContainer1
             // 
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(0, 312);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(0, 536);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Left;
             // 
             // toolStripContainer1.LeftToolStripPanel
@@ -365,7 +408,7 @@ namespace MySCADA
             this.toolStripContainer1.LeftToolStripPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 31);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(104, 337);
+            this.toolStripContainer1.Size = new System.Drawing.Size(104, 561);
             this.toolStripContainer1.TabIndex = 31;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -440,6 +483,7 @@ namespace MySCADA
             this.tlsEllipseSegment.Size = new System.Drawing.Size(108, 20);
             this.tlsEllipseSegment.Text = "Ellipse segment";
             this.tlsEllipseSegment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsEllipseSegment.Click += new System.EventHandler(this.tlsEllipseSegment_Click);
             // 
             // tlsPieSegment
             // 
@@ -450,6 +494,7 @@ namespace MySCADA
             this.tlsPieSegment.Size = new System.Drawing.Size(108, 20);
             this.tlsPieSegment.Text = "Pie segment";
             this.tlsPieSegment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsPieSegment.Click += new System.EventHandler(this.tlsPieSegment_Click);
             // 
             // tlsConnector
             // 
@@ -460,6 +505,7 @@ namespace MySCADA
             this.tlsConnector.Size = new System.Drawing.Size(108, 20);
             this.tlsConnector.Text = "Connector";
             this.tlsConnector.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsConnector.Click += new System.EventHandler(this.tlsConnector_Click);
             // 
             // tlsPolygon
             // 
@@ -483,7 +529,7 @@ namespace MySCADA
             this.pnControls.Name = "pnControls";
             this.pnControls.ShapeAlignDist = 15;
             this.pnControls.ShapeSnapDist = 15;
-            this.pnControls.Size = new System.Drawing.Size(565, 337);
+            this.pnControls.Size = new System.Drawing.Size(565, 561);
             this.pnControls.TabIndex = 32;
             this.pnControls.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnControls_MouseDown);
             this.pnControls.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnControls_MouseMove);
@@ -492,7 +538,7 @@ namespace MySCADA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(810, 368);
+            this.ClientSize = new System.Drawing.Size(810, 592);
             this.Controls.Add(this.pnControls);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.propertyGrid1);
@@ -554,5 +600,8 @@ namespace MySCADA
         private System.Windows.Forms.ToolStripButton tlsPieSegment;
         private System.Windows.Forms.ToolStripButton tlsConnector;
         private System.Windows.Forms.ToolStripButton tlsPolygon;
+        private System.Windows.Forms.ToolStripButton toolListBox;
+        private System.Windows.Forms.ToolStripButton toolTab;
+        private System.Windows.Forms.ToolStripButton toolComboBox;
     }
 }
