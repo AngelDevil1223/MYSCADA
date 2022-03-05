@@ -54,13 +54,18 @@ namespace MySCADA
 
         public ScadaForm ReadForm(string formName)
         {
-            var file = $"{Location}\\UserForms\\{formName}";
-            var str = File.ReadAllText(file);
+            var str = ReadRawForm(formName);
             if (string.IsNullOrEmpty(str))
             {
                 return new ScadaForm();
             }
             return JsonConvert.DeserializeObject<ScadaForm>(str);
+        }
+        public string ReadRawForm(string formName)
+        {
+            var file = $"{Location}\\UserForms\\{formName}";
+            var str = File.ReadAllText(file);
+            return str;
         }
 
         public string ReadCode(string formName)

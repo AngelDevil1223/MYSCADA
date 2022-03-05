@@ -105,8 +105,6 @@ namespace MySCADA
             tt.InitialDelay = 0;
             tt.IsBalloon = true;
             tt.Show(control.Name.ToString(), control);
-
-
         }
         private void control_MouseLeave(object sender, EventArgs e)
         {
@@ -305,9 +303,10 @@ namespace MySCADA
         void LoadComponents()
         {
             var assembly = Assembly.GetAssembly(typeof(Button));
-
+            var drawing = Assembly.GetAssembly(typeof(ScCircle)).GetTypes();
             var elements = ScadaProject.ActiveProject.ReadForm(form.DesignerFile);
             var types = assembly.GetTypes();
+
             if (elements.FormElements.Count == 0)
             {
                 var panel = new ScCanvas()
@@ -327,7 +326,7 @@ namespace MySCADA
             }
             foreach (var e in elements.FormElements)
             {
-                var tp = types.FirstOrDefault(x => x.Name == e.Type);
+                var tp = GetElementType(types, drawing, e.Type);
                 if (tp != null)
                 {
                     var props = tp.GetProperties();
@@ -353,10 +352,14 @@ namespace MySCADA
                         }
                     }
                     if(ctrl.Name== "MainPanel")
-                        ctrl.BackColor = SystemColors.InactiveCaption;
+                        ctrl.BackgroundImage = Properties.Resources.dotedback;
                     pnControls.Controls.Add(ctrl);
                 }
             }
+        }
+        Type GetElementType(Type[] types,Type[] drawing,string type)
+        {
+            return types.FirstOrDefault(x => x.Name == type) ?? drawing.FirstOrDefault(x => x.Name == type);
         }
         void SaveForm()
         {
