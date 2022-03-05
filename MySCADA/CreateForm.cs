@@ -69,7 +69,15 @@ namespace MySCADA
             FileInfo info = new FileInfo($"{loc}\\{frm.DesignerFile}");
             info.Directory.Create();
 
-            File.WriteAllText($"{loc}\\{frm.DesignerFile}", "");
+            if (cmbReuse.SelectedItem != null && (string)cmbReuse.SelectedItem != "(none)")
+            {
+                var fileContents = ScadaProject.ActiveProject.ReadRawForm($"{(string)cmbReuse.SelectedItem}.frx");
+                File.WriteAllText($"{loc}\\{frm.DesignerFile}", fileContents);
+            }
+            else
+            {
+                File.WriteAllText($"{loc}\\{frm.DesignerFile}", "");
+            }
             File.WriteAllText($"{loc}\\{frm.ScriptFile}", CreateCodeFile(frm.FormName));
         }
 
@@ -95,6 +103,14 @@ namespace MySCADA
             {
                 SaveForm();
             }
+        }
+
+        private void CreateForm_Load(object sender, EventArgs e)
+        {
+            ScadaProject.ActiveProject.UserForms.ForEach(f =>
+            {
+                cmbReuse.Items.Add(f.FormName);
+            });
         }
     }
 }
