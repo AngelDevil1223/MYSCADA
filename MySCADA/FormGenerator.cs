@@ -18,14 +18,13 @@ namespace MySCADA
             Form frm = new Form();
             frm.Name = formName;
             frm.Text = formName;
+            frm.Width = 565;
+            frm.Height = 561;
             foreach (var c in p.Controls)
             {
                 dynamic cd = c;
                 if (cd.Name == "MainPanel")
                 {
-                    var panel = ((ScCanvas)c).Clone();
-                    frm.Size = panel.Size;
-                    frm.BackColor = panel.BackColor;
                     break;
                 }
             }
@@ -98,22 +97,55 @@ namespace MySCADA
             return form;
         }
 
+        //Panel CreateComponents(UserForm form)
+        //{
+        //    var pnControls = new Panel();
+        //    var assembly = Assembly.GetAssembly(typeof(Button));
+
+        //    var elements = ScadaProject.ActiveProject.ReadForm(form.DesignerFile);
+        //    var types = assembly.GetTypes();
+        //    foreach (var e in elements.FormElements)
+        //    {
+        //        var tp = types.FirstOrDefault(x => x.Name == e.Type);
+        //        if (tp != null)
+        //        {
+        //            var props = tp.GetProperties();
+        //            var events = tp.GetEvents();
+        //            dynamic ctrl = Activator.CreateInstance(tp);
+        //            ctrl.BringToFront();
+        //            foreach (var a in e.Attributes)
+        //            {
+        //                var prop = props.FirstOrDefault(y => y.Name == a.Name);
+        //                if (prop != null && a.Value != null)
+        //                {
+        //                    try
+        //                    {
+        //                        prop.SetValue(ctrl, Convert.ChangeType(a.Value, prop.PropertyType));
+        //                    }
+        //                    catch (Exception) { }
+        //                }
+        //            }
+        //            pnControls.Controls.Add(ctrl);
+        //        }
+        //    }
+        //    return pnControls;
+        //}
         Panel CreateComponents(UserForm form)
         {
-            var pnControls = new Panel();
+            var panel = new ScCanvas();
             var assembly = Assembly.GetAssembly(typeof(Button));
-
+            var drawing = Assembly.GetAssembly(typeof(ScCircle)).GetTypes();
             var elements = ScadaProject.ActiveProject.ReadForm(form.DesignerFile);
             var types = assembly.GetTypes();
+
             foreach (var e in elements.FormElements)
             {
-                var tp = types.FirstOrDefault(x => x.Name == e.Type);
+                var tp = GetElementType(types, drawing, e.Type);
                 if (tp != null)
                 {
                     var props = tp.GetProperties();
                     var events = tp.GetEvents();
                     dynamic ctrl = Activator.CreateInstance(tp);
-                    ctrl.BringToFront();
                     foreach (var a in e.Attributes)
                     {
                         var prop = props.FirstOrDefault(y => y.Name == a.Name);
@@ -126,11 +158,21 @@ namespace MySCADA
                             catch (Exception) { }
                         }
                     }
-                    pnControls.Controls.Add(ctrl);
+                    if (ctrl.Name == "MainPanel")
+                    {
+                        //ctrl.BackgroundImage = Properties.Resources.dotedback;
+                    }
+                    else
+                    {
+                        panel.Controls.Add(ctrl);
+                    }
                 }
             }
-            return pnControls;
+            return panel;
         }
-
+        Type GetElementType(Type[] types, Type[] drawing, string type)
+        {
+            return types.FirstOrDefault(x => x.Name == type) ?? drawing.FirstOrDefault(x => x.Name == type);
+        }
     }
 }

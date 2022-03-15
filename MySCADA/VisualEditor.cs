@@ -298,6 +298,7 @@ namespace MySCADA
             {
                 pnControls.ContextMenuStrip = contextMenuStrip1;
             };
+            pnControls.BackgroundImage = Properties.Resources.dotedback;
             LoadComponents();
         }
         void LoadComponents()
@@ -307,23 +308,23 @@ namespace MySCADA
             var elements = ScadaProject.ActiveProject.ReadForm(form.DesignerFile);
             var types = assembly.GetTypes();
 
-            if (elements.FormElements.Count == 0)
-            {
-                var panel = new ScCanvas()
-                {
-                    Size = new Size(Width = 249, Height = 67)
-                };
-                panel.Name = "MainPanel";
-                panel.MouseEnter += new EventHandler(control_MouseEnter);
-                panel.MouseLeave += new EventHandler(control_MouseLeave);
-                panel.MouseDown += new MouseEventHandler(control_MouseDown);
-                panel.MouseMove += new MouseEventHandler(control_MouseMove);
-                panel.MouseUp += new MouseEventHandler(control_MouseUp);
-                panel.Click += new EventHandler(control_Click);
-                panel.BackgroundImage = Properties.Resources.dotedback;
-                pnControls.Controls.Add(panel);
-                panel.SendToBack();
-            }
+            //if (elements.FormElements.Count == 0)
+            //{
+            //    var panel = new ScCanvas()
+            //    {
+            //        Size = new Size(Width = 249, Height = 67)
+            //    };
+            //    panel.Name = "MainPanel";
+            //    panel.MouseEnter += new EventHandler(control_MouseEnter);
+            //    panel.MouseLeave += new EventHandler(control_MouseLeave);
+            //    panel.MouseDown += new MouseEventHandler(control_MouseDown);
+            //    panel.MouseMove += new MouseEventHandler(control_MouseMove);
+            //    panel.MouseUp += new MouseEventHandler(control_MouseUp);
+            //    panel.Click += new EventHandler(control_Click);
+            //    panel.BackgroundImage = Properties.Resources.dotedback;
+            //    pnControls.Controls.Add(panel);
+            //    panel.SendToBack();
+            //}
             foreach (var e in elements.FormElements)
             {
                 var tp = GetElementType(types, drawing, e.Type);
@@ -351,9 +352,14 @@ namespace MySCADA
                             catch (Exception) { }
                         }
                     }
-                    if(ctrl.Name== "MainPanel")
-                        ctrl.BackgroundImage = Properties.Resources.dotedback;
-                    pnControls.Controls.Add(ctrl);
+                    if (ctrl.Name == "MainPanel")
+                    {
+                        //ctrl.BackgroundImage = Properties.Resources.dotedback;
+                    }
+                    else
+                    {
+                        pnControls.Controls.Add(ctrl);
+                    }
                 }
             }
         }
