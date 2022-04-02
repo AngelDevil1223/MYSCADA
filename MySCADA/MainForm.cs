@@ -227,5 +227,11 @@ namespace MySCADA
             var form = gen.FromFile(fm);
             form.Show();
         }
+
+        private void tlsTag_Click(object sender, EventArgs e)
+        {
+            var tag = new Tag();
+            tag.Show();
+        }
     }
 }

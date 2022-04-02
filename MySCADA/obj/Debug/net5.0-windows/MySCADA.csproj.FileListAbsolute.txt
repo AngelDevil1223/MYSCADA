@@ -50,3 +50,5 @@ C:\Users\Admin\source\repos\MySCADA\MySCADA\bin\Debug\net5.0-windows\System.Runt
 C:\Users\Admin\source\repos\MySCADA\MySCADA\bin\Debug\net5.0-windows\System.Text.Encodings.Web.dll
 C:\Users\Admin\source\repos\MySCADA\MySCADA\bin\Debug\net5.0-windows\System.Text.Json.dll
 C:\Users\Admin\source\repos\MySCADA\MySCADA\obj\Debug\net5.0-windows\MySCADA.csproj.CopyComplete
+C:\Users\Admin\source\repos\MySCADA\MySCADA\obj\Debug\net5.0-windows\MySCADA.SimulatorCommunicationParameters.resources
+C:\Users\Admin\source\repos\MySCADA\MySCADA\obj\Debug\net5.0-windows\MySCADA.Tag.resources
