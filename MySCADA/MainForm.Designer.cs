@@ -81,6 +81,7 @@ namespace MySCADA
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.tlsNewFrm = new System.Windows.Forms.ToolStripButton();
             this.tlsDefaultForm = new System.Windows.Forms.ToolStripSplitButton();
+            this.tlsRun = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -93,7 +94,7 @@ namespace MySCADA
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.tlsRun = new System.Windows.Forms.ToolStripButton();
+            this.tlsTag = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -438,6 +439,7 @@ namespace MySCADA
             this.toolStripSeparator2,
             this.helpToolStripButton,
             this.tlsNewFrm,
+            this.tlsTag,
             this.tlsDefaultForm,
             this.tlsRun});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
@@ -525,6 +527,19 @@ namespace MySCADA
             this.tlsDefaultForm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tlsDefaultForm.ToolTipText = "Default form";
             this.tlsDefaultForm.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tlsDefaultForm_DropDownItemClicked);
+            // 
+            // tlsRun
+            // 
+            this.tlsRun.Image = ((System.Drawing.Image)(resources.GetObject("tlsRun.Image")));
+            this.tlsRun.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsRun.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tlsRun.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsRun.Name = "tlsRun";
+            this.tlsRun.Size = new System.Drawing.Size(48, 28);
+            this.tlsRun.Text = "Run";
+            this.tlsRun.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsRun.ToolTipText = "Run";
+            this.tlsRun.Click += new System.EventHandler(this.tlsRun_Click);
             // 
             // statusStrip
             // 
@@ -631,18 +646,17 @@ namespace MySCADA
             // 
             this.columnHeader3.Text = "Last change";
             // 
-            // tlsRun
+            // tlsTag
             // 
-            this.tlsRun.Image = ((System.Drawing.Image)(resources.GetObject("tlsRun.Image")));
-            this.tlsRun.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tlsRun.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tlsRun.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tlsRun.Name = "tlsRun";
-            this.tlsRun.Size = new System.Drawing.Size(48, 28);
-            this.tlsRun.Text = "Run";
-            this.tlsRun.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tlsRun.ToolTipText = "Run";
-            this.tlsRun.Click += new System.EventHandler(this.tlsRun_Click);
+            this.tlsTag.Image = ((System.Drawing.Image)(resources.GetObject("tlsTag.Image")));
+            this.tlsTag.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsTag.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tlsTag.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tlsTag.Name = "tlsTag";
+            this.tlsTag.Size = new System.Drawing.Size(69, 28);
+            this.tlsTag.Text = "Add tag";
+            this.tlsTag.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tlsTag.Click += new System.EventHandler(this.tlsTag_Click);
             // 
             // MainForm
             // 
@@ -739,6 +753,7 @@ namespace MySCADA
         private System.Windows.Forms.ToolStripMenuItem ctxDelete;
         private System.Windows.Forms.ToolStripSplitButton tlsDefaultForm;
         private System.Windows.Forms.ToolStripButton tlsRun;
+        private System.Windows.Forms.ToolStripButton tlsTag;
     }
 }
 
