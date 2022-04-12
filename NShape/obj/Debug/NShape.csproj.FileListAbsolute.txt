@@ -1,0 +1,15 @@
+D:\Documents\GitHub\Nshape\NShape\bin\Debug\Dataweb.NShape.XML
+D:\Documents\GitHub\Nshape\NShape\bin\Debug\Dataweb.NShape.dll
+D:\Documents\GitHub\Nshape\NShape\bin\Debug\Dataweb.NShape.pdb
+D:\Documents\GitHub\Nshape\NShape\Source\Core\obj\Debug\Dataweb.NShape.Properties.Resources.resources
+D:\Documents\GitHub\Nshape\NShape\Source\Core\obj\Debug\NShape.csproj.GenerateResource.cache
+D:\Documents\GitHub\Nshape\NShape\Source\Core\obj\Debug\NShape.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\Nshape\NShape\Source\Core\obj\Debug\Dataweb.NShape.dll
+D:\Documents\GitHub\Nshape\NShape\Source\Core\obj\Debug\Dataweb.NShape.pdb
+C:\Users\Admin\source\repos\bin\Debug\Dataweb.NShape.XML
+C:\Users\Admin\source\repos\MySCADA\NShape\obj\Debug\NShape.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\MySCADA\NShape\obj\Debug\Dataweb.NShape.Properties.Resources.resources
+C:\Users\Admin\source\repos\MySCADA\NShape\obj\Debug\NShape.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\MySCADA\NShape\obj\Debug\NShape.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\MySCADA\NShape\obj\Debug\Dataweb.NShape.dll
+C:\Users\Admin\source\repos\MySCADA\NShape\obj\Debug\Dataweb.NShape.pdb

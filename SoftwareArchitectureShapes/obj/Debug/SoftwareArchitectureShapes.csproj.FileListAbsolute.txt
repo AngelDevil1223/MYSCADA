@@ -1,0 +1,15 @@
+D:\Documents\GitHub\Nshape\NShape\bin\Debug\Dataweb.NShape.SoftwareArchitectureShapes.dll
+D:\Documents\GitHub\Nshape\NShape\bin\Debug\Dataweb.NShape.SoftwareArchitectureShapes.pdb
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Debug\SoftwareArchitectureShapes.csproj.AssemblyReference.cache
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Debug\Dataweb.NShape.SoftwareArchitectureShapes.Properties.Resources.resources
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Debug\SoftwareArchitectureShapes.csproj.GenerateResource.cache
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Debug\SoftwareArchitectureShapes.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Debug\SoftwareArchitectureShapes.csproj.CopyComplete
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Debug\Dataweb.NShape.SoftwareArchitectureShapes.dll
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Debug\Dataweb.NShape.SoftwareArchitectureShapes.pdb
+C:\Users\Admin\source\repos\MySCADA\SoftwareArchitectureShapes\obj\Debug\SoftwareArchitectureShapes.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\MySCADA\SoftwareArchitectureShapes\obj\Debug\Dataweb.NShape.SoftwareArchitectureShapes.Properties.Resources.resources
+C:\Users\Admin\source\repos\MySCADA\SoftwareArchitectureShapes\obj\Debug\SoftwareArchitectureShapes.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\MySCADA\SoftwareArchitectureShapes\obj\Debug\SoftwareArchitectureShapes.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\MySCADA\SoftwareArchitectureShapes\obj\Debug\Dataweb.NShape.SoftwareArchitectureShapes.dll
+C:\Users\Admin\source\repos\MySCADA\SoftwareArchitectureShapes\obj\Debug\Dataweb.NShape.SoftwareArchitectureShapes.pdb

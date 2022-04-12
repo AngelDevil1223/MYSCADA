@@ -34,7 +34,14 @@
         "frameworks": {
           "net5.0-windows7.0": {
             "targetAlias": "net5.0-windows",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Admin\\source\\repos\\MySCADA\\NShape\\NShape.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\MySCADA\\NShape\\NShape.csproj"
+              },
+              "C:\\Users\\Admin\\source\\repos\\MySCADA\\WinFormsUI\\WinFormsUI.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\MySCADA\\WinFormsUI\\WinFormsUI.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -90,6 +97,40 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\Admin\\source\\repos\\MySCADA\\NShape\\NShape.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\MySCADA\\NShape\\NShape.csproj",
+        "projectName": "NShape",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\MySCADA\\NShape\\NShape.csproj",
+        "frameworks": {
+          "net40": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net40": {}
+      }
+    },
+    "C:\\Users\\Admin\\source\\repos\\MySCADA\\WinFormsUI\\WinFormsUI.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\MySCADA\\WinFormsUI\\WinFormsUI.csproj",
+        "projectName": "WinFormsUI",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\MySCADA\\WinFormsUI\\WinFormsUI.csproj",
+        "frameworks": {
+          "net40": {
+            "projectReferences": {
+              "C:\\Users\\Admin\\source\\repos\\MySCADA\\NShape\\NShape.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\MySCADA\\NShape\\NShape.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net40": {}
       }
     }
   }

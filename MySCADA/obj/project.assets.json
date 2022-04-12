@@ -406,6 +406,27 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "NShape/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/NShape.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/NShape.dll": {}
+        }
+      },
+      "WinFormsUI/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "NShape": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/WinFormsUI.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WinFormsUI.dll": {}
+        }
       }
     }
   },
@@ -1219,6 +1240,16 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "NShape/1.0.0": {
+      "type": "project",
+      "path": "../NShape/NShape.csproj",
+      "msbuildProject": "../NShape/NShape.csproj"
+    },
+    "WinFormsUI/1.0.0": {
+      "type": "project",
+      "path": "../WinFormsUI/WinFormsUI.csproj",
+      "msbuildProject": "../WinFormsUI/WinFormsUI.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1226,8 +1257,10 @@
       "Microsoft.EntityFrameworkCore >= 5.0.14",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.14",
       "Microsoft.Extensions.Configuration.Json >= 6.0.0",
+      "NShape >= 1.0.0",
       "Newtonsoft.Json >= 13.0.1",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 5.0.10"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 5.0.10",
+      "WinFormsUI >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1265,7 +1298,14 @@
       "frameworks": {
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Admin\\source\\repos\\MySCADA\\NShape\\NShape.csproj": {
+              "projectPath": "C:\\Users\\Admin\\source\\repos\\MySCADA\\NShape\\NShape.csproj"
+            },
+            "C:\\Users\\Admin\\source\\repos\\MySCADA\\WinFormsUI\\WinFormsUI.csproj": {
+              "projectPath": "C:\\Users\\Admin\\source\\repos\\MySCADA\\WinFormsUI\\WinFormsUI.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

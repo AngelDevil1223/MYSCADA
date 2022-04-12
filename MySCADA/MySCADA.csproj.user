@@ -22,6 +22,24 @@
     <Compile Update="CreateForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Designer\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Designer\DiagramSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Designer\DisplaySettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Designer\EventMonitorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Designer\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Designer\OpenAdoNetRepositoryDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Drawing\ScCanvas.cs">
       <SubType>Component</SubType>
     </Compile>

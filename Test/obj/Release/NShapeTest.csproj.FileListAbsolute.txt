@@ -1,0 +1,10 @@
+D:\Documents\GitHub\Nshape\NShape\bin\Release\NShapeTest.dll.config
+D:\Documents\GitHub\Nshape\NShape\bin\Release\NShapeTest.dll
+D:\Documents\GitHub\Nshape\NShape\bin\Release\NShapeTest.pdb
+D:\Documents\GitHub\Nshape\NShape\Source\Test\obj\Release\NShapeTest.csproj.AssemblyReference.cache
+D:\Documents\GitHub\Nshape\NShape\Source\Test\obj\Release\NShapeTest.Properties.Resources.resources
+D:\Documents\GitHub\Nshape\NShape\Source\Test\obj\Release\NShapeTest.csproj.GenerateResource.cache
+D:\Documents\GitHub\Nshape\NShape\Source\Test\obj\Release\NShapeTest.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\Nshape\NShape\Source\Test\obj\Release\NShapeTest.csproj.CopyComplete
+D:\Documents\GitHub\Nshape\NShape\Source\Test\obj\Release\NShapeTest.dll
+D:\Documents\GitHub\Nshape\NShape\Source\Test\obj\Release\NShapeTest.pdb

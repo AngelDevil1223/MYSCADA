@@ -1,0 +1,9 @@
+D:\Documents\GitHub\Nshape\NShape\bin\Release\Dataweb.NShape.SoftwareArchitectureShapes.dll
+D:\Documents\GitHub\Nshape\NShape\bin\Release\Dataweb.NShape.SoftwareArchitectureShapes.pdb
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Release\SoftwareArchitectureShapes.csproj.AssemblyReference.cache
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Release\Dataweb.NShape.SoftwareArchitectureShapes.Properties.Resources.resources
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Release\SoftwareArchitectureShapes.csproj.GenerateResource.cache
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Release\SoftwareArchitectureShapes.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Release\SoftwareArchitectureShapes.csproj.CopyComplete
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Release\Dataweb.NShape.SoftwareArchitectureShapes.dll
+D:\Documents\GitHub\Nshape\NShape\Source\SoftwareArchitectureShapes\obj\Release\Dataweb.NShape.SoftwareArchitectureShapes.pdb

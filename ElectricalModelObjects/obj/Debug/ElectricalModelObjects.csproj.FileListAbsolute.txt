@@ -1,0 +1,15 @@
+D:\Documents\GitHub\Nshape\NShape\bin\Debug\Dataweb.NShape.ElectricalModelObjects.dll
+D:\Documents\GitHub\Nshape\NShape\bin\Debug\Dataweb.NShape.ElectricalModelObjects.pdb
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Debug\ElectricalModelObjects.csproj.AssemblyReference.cache
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Debug\Dataweb.NShape.ElectricalModelObjects.Properties.Resources.resources
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Debug\ElectricalModelObjects.csproj.GenerateResource.cache
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Debug\ElectricalModelObjects.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Debug\ElectricalModelObjects.csproj.CopyComplete
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Debug\Dataweb.NShape.ElectricalModelObjects.dll
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Debug\Dataweb.NShape.ElectricalModelObjects.pdb
+C:\Users\Admin\source\repos\MySCADA\ElectricalModelObjects\obj\Debug\ElectricalModelObjects.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\MySCADA\ElectricalModelObjects\obj\Debug\Dataweb.NShape.ElectricalModelObjects.Properties.Resources.resources
+C:\Users\Admin\source\repos\MySCADA\ElectricalModelObjects\obj\Debug\ElectricalModelObjects.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\MySCADA\ElectricalModelObjects\obj\Debug\ElectricalModelObjects.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\MySCADA\ElectricalModelObjects\obj\Debug\Dataweb.NShape.ElectricalModelObjects.dll
+C:\Users\Admin\source\repos\MySCADA\ElectricalModelObjects\obj\Debug\Dataweb.NShape.ElectricalModelObjects.pdb
