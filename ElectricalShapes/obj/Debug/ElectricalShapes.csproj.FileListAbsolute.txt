@@ -1,0 +1,14 @@
+D:\Documents\GitHub\Nshape\NShape\bin\Debug\Dataweb.NShape.ElectricalShapes.dll
+D:\Documents\GitHub\Nshape\NShape\bin\Debug\Dataweb.NShape.ElectricalShapes.pdb
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Debug\Dataweb.NShape.ElectricalShapes.Properties.Resources.resources
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Debug\ElectricalShapes.csproj.GenerateResource.cache
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Debug\ElectricalShapes.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Debug\ElectricalShapes.csproj.CopyComplete
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Debug\Dataweb.NShape.ElectricalShapes.dll
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Debug\Dataweb.NShape.ElectricalShapes.pdb
+C:\Users\Admin\source\repos\MySCADA\ElectricalShapes\obj\Debug\ElectricalShapes.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\MySCADA\ElectricalShapes\obj\Debug\Dataweb.NShape.ElectricalShapes.Properties.Resources.resources
+C:\Users\Admin\source\repos\MySCADA\ElectricalShapes\obj\Debug\ElectricalShapes.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\MySCADA\ElectricalShapes\obj\Debug\ElectricalShapes.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\MySCADA\ElectricalShapes\obj\Debug\Dataweb.NShape.ElectricalShapes.dll
+C:\Users\Admin\source\repos\MySCADA\ElectricalShapes\obj\Debug\Dataweb.NShape.ElectricalShapes.pdb

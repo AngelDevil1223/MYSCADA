@@ -1,0 +1,9 @@
+D:\Documents\GitHub\Nshape\NShape\bin\Release\Dataweb.NShape.ElectricalShapes.dll
+D:\Documents\GitHub\Nshape\NShape\bin\Release\Dataweb.NShape.ElectricalShapes.pdb
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Release\ElectricalShapes.csproj.AssemblyReference.cache
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Release\Dataweb.NShape.ElectricalShapes.Properties.Resources.resources
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Release\ElectricalShapes.csproj.GenerateResource.cache
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Release\ElectricalShapes.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Release\ElectricalShapes.csproj.CopyComplete
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Release\Dataweb.NShape.ElectricalShapes.dll
+D:\Documents\GitHub\Nshape\NShape\Source\ElectricalShapes\obj\Release\Dataweb.NShape.ElectricalShapes.pdb

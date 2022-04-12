@@ -1,0 +1,15 @@
+D:\Documents\GitHub\Nshape\NShape\bin\Debug\Dataweb.NShape.GeneralModelObjects.dll
+D:\Documents\GitHub\Nshape\NShape\bin\Debug\Dataweb.NShape.GeneralModelObjects.pdb
+D:\Documents\GitHub\Nshape\NShape\Source\GeneralModelObjects\obj\Debug\GeneralModelObjects.csproj.AssemblyReference.cache
+D:\Documents\GitHub\Nshape\NShape\Source\GeneralModelObjects\obj\Debug\Dataweb.NShape.GeneralModelObjects.Properties.Resources.resources
+D:\Documents\GitHub\Nshape\NShape\Source\GeneralModelObjects\obj\Debug\GeneralModelObjects.csproj.GenerateResource.cache
+D:\Documents\GitHub\Nshape\NShape\Source\GeneralModelObjects\obj\Debug\GeneralModelObjects.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\Nshape\NShape\Source\GeneralModelObjects\obj\Debug\GeneralModelObjects.csproj.CopyComplete
+D:\Documents\GitHub\Nshape\NShape\Source\GeneralModelObjects\obj\Debug\Dataweb.NShape.GeneralModelObjects.dll
+D:\Documents\GitHub\Nshape\NShape\Source\GeneralModelObjects\obj\Debug\Dataweb.NShape.GeneralModelObjects.pdb
+C:\Users\Admin\source\repos\MySCADA\GeneralModelObjects\obj\Debug\GeneralModelObjects.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\MySCADA\GeneralModelObjects\obj\Debug\Dataweb.NShape.GeneralModelObjects.Properties.Resources.resources
+C:\Users\Admin\source\repos\MySCADA\GeneralModelObjects\obj\Debug\GeneralModelObjects.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\MySCADA\GeneralModelObjects\obj\Debug\GeneralModelObjects.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\MySCADA\GeneralModelObjects\obj\Debug\Dataweb.NShape.GeneralModelObjects.dll
+C:\Users\Admin\source\repos\MySCADA\GeneralModelObjects\obj\Debug\Dataweb.NShape.GeneralModelObjects.pdb
