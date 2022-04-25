@@ -1,9 +1,0 @@
-D:\Documents\GitHub\Nshape\NShape\bin\Release\Dataweb.NShape.FlowChartShapes.dll
-D:\Documents\GitHub\Nshape\NShape\bin\Release\Dataweb.NShape.FlowChartShapes.pdb
-D:\Documents\GitHub\Nshape\NShape\Source\FlowChartShapes\obj\Release\FlowChartShapes.csproj.AssemblyReference.cache
-D:\Documents\GitHub\Nshape\NShape\Source\FlowChartShapes\obj\Release\Dataweb.NShape.FlowChartShapes.Properties.Resources.resources
-D:\Documents\GitHub\Nshape\NShape\Source\FlowChartShapes\obj\Release\FlowChartShapes.csproj.GenerateResource.cache
-D:\Documents\GitHub\Nshape\NShape\Source\FlowChartShapes\obj\Release\FlowChartShapes.csproj.CoreCompileInputs.cache
-D:\Documents\GitHub\Nshape\NShape\Source\FlowChartShapes\obj\Release\FlowChartShapes.csproj.CopyComplete
-D:\Documents\GitHub\Nshape\NShape\Source\FlowChartShapes\obj\Release\Dataweb.NShape.FlowChartShapes.dll
-D:\Documents\GitHub\Nshape\NShape\Source\FlowChartShapes\obj\Release\Dataweb.NShape.FlowChartShapes.pdb
