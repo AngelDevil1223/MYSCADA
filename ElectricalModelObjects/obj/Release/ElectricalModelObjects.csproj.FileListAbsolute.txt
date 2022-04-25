@@ -1,9 +1,0 @@
-D:\Documents\GitHub\Nshape\NShape\bin\Release\Dataweb.NShape.ElectricalModelObjects.dll
-D:\Documents\GitHub\Nshape\NShape\bin\Release\Dataweb.NShape.ElectricalModelObjects.pdb
-D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Release\ElectricalModelObjects.csproj.AssemblyReference.cache
-D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Release\Dataweb.NShape.ElectricalModelObjects.Properties.Resources.resources
-D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Release\ElectricalModelObjects.csproj.GenerateResource.cache
-D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Release\ElectricalModelObjects.csproj.CoreCompileInputs.cache
-D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Release\ElectricalModelObjects.csproj.CopyComplete
-D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Release\Dataweb.NShape.ElectricalModelObjects.dll
-D:\Documents\GitHub\Nshape\NShape\Source\ElectricalModelObjects\obj\Release\Dataweb.NShape.ElectricalModelObjects.pdb
